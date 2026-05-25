@@ -1,0 +1,1952 @@
+[
+  {
+    "id": 1,
+    "name": "Virat Kohli",
+    "role": "Batsman",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 252,
+      "Runs": 8004,
+      "SR": 131.9
+    }
+  },
+  {
+    "id": 2,
+    "name": "Rohit Sharma",
+    "role": "Batsman",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 257,
+      "Runs": 6628,
+      "SR": 131.1
+    }
+  },
+  {
+    "id": 3,
+    "name": "Jasprit Bumrah",
+    "role": "Bowler",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 133,
+      "Wkts": 165,
+      "Econ": 7.3
+    }
+  },
+  {
+    "id": 4,
+    "name": "Rashid Khan",
+    "role": "Bowler",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 121,
+      "Wkts": 149,
+      "Econ": 6.73
+    }
+  },
+  {
+    "id": 5,
+    "name": "Hardik Pandya",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 137,
+      "Runs": 2525,
+      "Wkts": 64
+    }
+  },
+  {
+    "id": 6,
+    "name": "Suryakumar Yadav",
+    "role": "Batsman",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 150,
+      "Runs": 3594,
+      "SR": 145.3
+    }
+  },
+  {
+    "id": 7,
+    "name": "Rishabh Pant",
+    "role": "Wicketkeeper",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 111,
+      "Runs": 3284,
+      "SR": 148.9
+    }
+  },
+  {
+    "id": 8,
+    "name": "Shubman Gill",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 103,
+      "Runs": 3216,
+      "SR": 135.7
+    }
+  },
+  {
+    "id": 9,
+    "name": "Travis Head",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 25,
+      "Runs": 772,
+      "SR": 184.6
+    }
+  },
+  {
+    "id": 10,
+    "name": "Sunil Narine",
+    "role": "All-Rounder",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 176,
+      "Runs": 1534,
+      "Wkts": 180
+    }
+  },
+  {
+    "id": 11,
+    "name": "Andre Russell",
+    "role": "All-Rounder",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 127,
+      "Runs": 2484,
+      "Wkts": 115
+    }
+  },
+  {
+    "id": 12,
+    "name": "Ravindra Jadeja",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 240,
+      "Runs": 2959,
+      "Wkts": 160
+    }
+  },
+  {
+    "id": 13,
+    "name": "Heinrich Klaasen",
+    "role": "Wicketkeeper",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 35,
+      "Runs": 927,
+      "SR": 175.6
+    }
+  },
+  {
+    "id": 14,
+    "name": "Nicholas Pooran",
+    "role": "Wicketkeeper",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 76,
+      "Runs": 1769,
+      "SR": 159.2
+    }
+  },
+  {
+    "id": 15,
+    "name": "Jos Buttler",
+    "role": "Wicketkeeper",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 107,
+      "Runs": 3582,
+      "SR": 147.2
+    }
+  },
+  {
+    "id": 16,
+    "name": "Pat Cummins",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 58,
+      "Wkts": 63,
+      "Econ": 8.42
+    }
+  },
+  {
+    "id": 17,
+    "name": "Mitchell Starc",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 41,
+      "Wkts": 51,
+      "Econ": 8.21
+    }
+  },
+  {
+    "id": 18,
+    "name": "Ruturaj Gaikwad",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 66,
+      "Runs": 2380,
+      "SR": 136.9
+    }
+  },
+  {
+    "id": 19,
+    "name": "Yashasvi Jaiswal",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 53,
+      "Runs": 1607,
+      "SR": 150.8
+    }
+  },
+  {
+    "id": 20,
+    "name": "KL Rahul",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 132,
+      "Runs": 4683,
+      "SR": 134.6
+    }
+  },
+  {
+    "id": 21,
+    "name": "Quinton de Kock",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 107,
+      "Runs": 3157,
+      "SR": 134.1
+    }
+  },
+  {
+    "id": 22,
+    "name": "Trent Boult",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 104,
+      "Wkts": 121,
+      "Econ": 8.23
+    }
+  },
+  {
+    "id": 23,
+    "name": "Arshdeep Singh",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 65,
+      "Wkts": 76,
+      "Econ": 8.82
+    }
+  },
+  {
+    "id": 24,
+    "name": "Kuldeep Yadav",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 84,
+      "Wkts": 87,
+      "Econ": 8.12
+    }
+  },
+  {
+    "id": 25,
+    "name": "Axar Patel",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 150,
+      "Runs": 1653,
+      "Wkts": 123
+    }
+  },
+  {
+    "id": 26,
+    "name": "Rinku Singh",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 45,
+      "Runs": 893,
+      "SR": 143.2
+    }
+  },
+  {
+    "id": 27,
+    "name": "Shivam Dube",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 65,
+      "Runs": 1502,
+      "SR": 142.1
+    }
+  },
+  {
+    "id": 28,
+    "name": "Phil Salt",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 21,
+      "Runs": 654,
+      "SR": 175.8
+    }
+  },
+  {
+    "id": 29,
+    "name": "Will Jacks",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 8,
+      "Runs": 230,
+      "SR": 175.6
+    }
+  },
+  {
+    "id": 30,
+    "name": "Jake Fraser-McGurk",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 9,
+      "Runs": 330,
+      "SR": 234.0
+    }
+  },
+  {
+    "id": 31,
+    "name": "Abhishek Sharma",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 63,
+      "Runs": 1376,
+      "SR": 155.2
+    }
+  },
+  {
+    "id": 32,
+    "name": "Riyan Parag",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 70,
+      "Runs": 1173,
+      "SR": 139.2
+    }
+  },
+  {
+    "id": 33,
+    "name": "Matheesha Pathirana",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 20,
+      "Wkts": 34,
+      "Econ": 7.88
+    }
+  },
+  {
+    "id": 34,
+    "name": "Mohammed Siraj",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 93,
+      "Wkts": 93,
+      "Econ": 8.64
+    }
+  },
+  {
+    "id": 35,
+    "name": "Yuzvendra Chahal",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 159,
+      "Wkts": 205,
+      "Econ": 7.84
+    }
+  },
+  {
+    "id": 36,
+    "name": "Harshal Patel",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 106,
+      "Wkts": 135,
+      "Econ": 8.62
+    }
+  },
+  {
+    "id": 37,
+    "name": "Mohammed Shami",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 110,
+      "Wkts": 127,
+      "Econ": 8.44
+    }
+  },
+  {
+    "id": 38,
+    "name": "Sam Curran",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 59,
+      "Runs": 883,
+      "Wkts": 58
+    }
+  },
+  {
+    "id": 39,
+    "name": "Cameron Green",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 29,
+      "Runs": 707,
+      "Wkts": 16
+    }
+  },
+  {
+    "id": 40,
+    "name": "Glenn Maxwell",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 134,
+      "Runs": 2771,
+      "Wkts": 37
+    }
+  },
+  {
+    "id": 41,
+    "name": "Shreyas Iyer",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 115,
+      "Runs": 3127,
+      "SR": 125.2
+    }
+  },
+  {
+    "id": 42,
+    "name": "Sanju Samson",
+    "role": "Wicketkeeper",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 167,
+      "Runs": 4419,
+      "SR": 138.9
+    }
+  },
+  {
+    "id": 43,
+    "name": "Ishan Kishan",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 105,
+      "Runs": 2644,
+      "SR": 135.7
+    }
+  },
+  {
+    "id": 44,
+    "name": "Marcus Stoinis",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 96,
+      "Runs": 1866,
+      "Wkts": 43
+    }
+  },
+  {
+    "id": 45,
+    "name": "David Miller",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 130,
+      "Runs": 2924,
+      "SR": 139.2
+    }
+  },
+  {
+    "id": 46,
+    "name": "Wanindu Hasaranga",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 26,
+      "Wkts": 35,
+      "Econ": 8.13
+    }
+  },
+  {
+    "id": 47,
+    "name": "Kagiso Rabada",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 80,
+      "Wkts": 117,
+      "Econ": 8.42
+    }
+  },
+  {
+    "id": 48,
+    "name": "Anrich Nortje",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 46,
+      "Wkts": 60,
+      "Econ": 8.85
+    }
+  },
+  {
+    "id": 49,
+    "name": "Sandeep Sharma",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 127,
+      "Wkts": 137,
+      "Econ": 7.92
+    }
+  },
+  {
+    "id": 50,
+    "name": "Mayank Yadav",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 4,
+      "Wkts": 7,
+      "Econ": 6.99
+    }
+  },
+  {
+    "id": 51,
+    "name": "T Natarajan",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 61,
+      "Wkts": 67,
+      "Econ": 8.83
+    }
+  },
+  {
+    "id": 52,
+    "name": "Ravi Bishnoi",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 66,
+      "Wkts": 63,
+      "Econ": 7.66
+    }
+  },
+  {
+    "id": 53,
+    "name": "Varun Chakravarthy",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 70,
+      "Wkts": 83,
+      "Econ": 7.64
+    }
+  },
+  {
+    "id": 54,
+    "name": "Sai Sudharsan",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 25,
+      "Runs": 1034,
+      "SR": 139.1
+    }
+  },
+  {
+    "id": 55,
+    "name": "Tilak Varma",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 38,
+      "Runs": 1156,
+      "SR": 146.3
+    }
+  },
+  {
+    "id": 56,
+    "name": "Rachin Ravindra",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 10,
+      "Runs": 222,
+      "SR": 160.9
+    }
+  },
+  {
+    "id": 57,
+    "name": "Daryl Mitchell",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 13,
+      "Runs": 318,
+      "SR": 142.6
+    }
+  },
+  {
+    "id": 58,
+    "name": "Azmatullah Omarzai",
+    "role": "All-Rounder",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 7,
+      "Runs": 42,
+      "Wkts": 4
+    }
+  },
+  {
+    "id": 59,
+    "name": "Mohit Sharma",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 112,
+      "Wkts": 132,
+      "Econ": 8.54
+    }
+  },
+  {
+    "id": 60,
+    "name": "MS Dhoni",
+    "role": "Wicketkeeper",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 264,
+      "Runs": 5243,
+      "SR": 137.5
+    }
+  },
+  {
+    "id": 61,
+    "name": "Ravichandran Ashwin",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 67,
+      "Runs": 1309,
+      "Wkts": 12
+    }
+  },
+  {
+    "id": 62,
+    "name": "Deepak Chahar",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 115,
+      "Wkts": 97,
+      "Econ": 9.35
+    }
+  },
+  {
+    "id": 63,
+    "name": "Shardul Thakur",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 20,
+      "Runs": 289,
+      "Wkts": 42
+    }
+  },
+  {
+    "id": 64,
+    "name": "Washington Sundar",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 127,
+      "Runs": 529,
+      "Wkts": 40
+    }
+  },
+  {
+    "id": 65,
+    "name": "Prithvi Shaw",
+    "role": "Batsman",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 122,
+      "Runs": 937,
+      "SR": 120.3
+    }
+  },
+  {
+    "id": 66,
+    "name": "Devdutt Padikkal",
+    "role": "Batsman",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 82,
+      "Runs": 2131,
+      "SR": 138.6
+    }
+  },
+  {
+    "id": 67,
+    "name": "Ajinkya Rahane",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 150,
+      "Runs": 1373,
+      "SR": 123.4
+    }
+  },
+  {
+    "id": 68,
+    "name": "Dinesh Karthik",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 111,
+      "Runs": 741,
+      "SR": 159.6
+    }
+  },
+  {
+    "id": 69,
+    "name": "Bhuvneshwar Kumar",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 51,
+      "Wkts": 30,
+      "Econ": 8.46
+    }
+  },
+  {
+    "id": 70,
+    "name": "Umesh Yadav",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 106,
+      "Wkts": 114,
+      "Econ": 9.11
+    }
+  },
+  {
+    "id": 71,
+    "name": "Tushar Deshpande",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 11,
+      "Wkts": 167,
+      "Econ": 9.2
+    }
+  },
+  {
+    "id": 72,
+    "name": "Avesh Khan",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 105,
+      "Wkts": 23,
+      "Econ": 8.68
+    }
+  },
+  {
+    "id": 73,
+    "name": "Khaleel Ahmed",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 104,
+      "Wkts": 94,
+      "Econ": 8.11
+    }
+  },
+  {
+    "id": 74,
+    "name": "Mukesh Kumar",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 113,
+      "Wkts": 28,
+      "Econ": 7.66
+    }
+  },
+  {
+    "id": 75,
+    "name": "Prasidh Krishna",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 15,
+      "Wkts": 36,
+      "Econ": 7.46
+    }
+  },
+  {
+    "id": 76,
+    "name": "Harpreet Brar",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 123,
+      "Wkts": 40,
+      "Econ": 7.07
+    }
+  },
+  {
+    "id": 77,
+    "name": "Rahul Chahar",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 34,
+      "Wkts": 171,
+      "Econ": 9.39
+    }
+  },
+  {
+    "id": 78,
+    "name": "Krunal Pandya",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 59,
+      "Runs": 1921,
+      "Wkts": 24
+    }
+  },
+  {
+    "id": 79,
+    "name": "Rahul Tewatia",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 74,
+      "Runs": 1492,
+      "Wkts": 83
+    }
+  },
+  {
+    "id": 80,
+    "name": "Shahrukh Khan",
+    "role": "All-Rounder",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 99,
+      "Runs": 2463,
+      "Wkts": 14
+    }
+  },
+  {
+    "id": 81,
+    "name": "Venkatesh Iyer",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 99,
+      "Runs": 843,
+      "Wkts": 87
+    }
+  },
+  {
+    "id": 82,
+    "name": "Nitish Rana",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 73,
+      "Runs": 3685,
+      "SR": 139.0
+    }
+  },
+  {
+    "id": 83,
+    "name": "Manish Pandey",
+    "role": "Batsman",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 35,
+      "Runs": 2660,
+      "SR": 122.1
+    }
+  },
+  {
+    "id": 84,
+    "name": "Karun Nair",
+    "role": "Batsman",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 150,
+      "Runs": 535,
+      "SR": 153.3
+    }
+  },
+  {
+    "id": 85,
+    "name": "Deepak Hooda",
+    "role": "All-Rounder",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 20,
+      "Runs": 1638,
+      "Wkts": 14
+    }
+  },
+  {
+    "id": 86,
+    "name": "Vijay Shankar",
+    "role": "All-Rounder",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 109,
+      "Runs": 424,
+      "Wkts": 80
+    }
+  },
+  {
+    "id": 87,
+    "name": "Sarfaraz Khan",
+    "role": "Batsman",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 115,
+      "Runs": 1668,
+      "SR": 150.4
+    }
+  },
+  {
+    "id": 88,
+    "name": "Dhruv Jurel",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 83,
+      "Runs": 648,
+      "SR": 156.8
+    }
+  },
+  {
+    "id": 89,
+    "name": "Jitesh Sharma",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 31,
+      "Runs": 1932,
+      "SR": 132.4
+    }
+  },
+  {
+    "id": 90,
+    "name": "KS Bharat",
+    "role": "Wicketkeeper",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 23,
+      "Runs": 3870,
+      "SR": 123.5
+    }
+  },
+  {
+    "id": 91,
+    "name": "Kedar Jadhav",
+    "role": "All-Rounder",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 94,
+      "Runs": 768,
+      "Wkts": 61
+    }
+  },
+  {
+    "id": 92,
+    "name": "Jaydev Unadkat",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 90,
+      "Wkts": 57,
+      "Econ": 7.89
+    }
+  },
+  {
+    "id": 93,
+    "name": "Sandeep Warrier",
+    "role": "Bowler",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 46,
+      "Wkts": 167,
+      "Econ": 7.76
+    }
+  },
+  {
+    "id": 94,
+    "name": "Chetan Sakariya",
+    "role": "Bowler",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 26,
+      "Wkts": 111,
+      "Econ": 8.7
+    }
+  },
+  {
+    "id": 95,
+    "name": "Kartik Tyagi",
+    "role": "Bowler",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 120,
+      "Wkts": 70,
+      "Econ": 7.52
+    }
+  },
+  {
+    "id": 96,
+    "name": "Yash Dayal",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 43,
+      "Wkts": 28,
+      "Econ": 8.22
+    }
+  },
+  {
+    "id": 97,
+    "name": "Vidwath Kaverappa",
+    "role": "Bowler",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 113,
+      "Wkts": 158,
+      "Econ": 9.1
+    }
+  },
+  {
+    "id": 98,
+    "name": "Sai Kishore",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 31,
+      "Wkts": 88,
+      "Econ": 8.64
+    }
+  },
+  {
+    "id": 99,
+    "name": "Suyash Sharma",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 135,
+      "Wkts": 113,
+      "Econ": 8.7
+    }
+  },
+  {
+    "id": 100,
+    "name": "Manav Suthar",
+    "role": "Bowler",
+    "rating": 3,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 107,
+      "Wkts": 51,
+      "Econ": 8.5
+    }
+  },
+  {
+    "id": 101,
+    "name": "Nehal Wadhera",
+    "role": "Batsman",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 117,
+      "Runs": 1736,
+      "SR": 123.8
+    }
+  },
+  {
+    "id": 102,
+    "name": "Ayush Badoni",
+    "role": "All-Rounder",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 10,
+      "Runs": 2068,
+      "Wkts": 61
+    }
+  },
+  {
+    "id": 103,
+    "name": "Ramandeep Singh",
+    "role": "All-Rounder",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 128,
+      "Runs": 877,
+      "Wkts": 55
+    }
+  },
+  {
+    "id": 104,
+    "name": "Vaibhav Arora",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": false,
+    "stats": {
+      "Matches": 88,
+      "Wkts": 110,
+      "Econ": 7.03
+    }
+  },
+  {
+    "id": 105,
+    "name": "Liam Livingstone",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 34,
+      "Runs": 2100,
+      "Wkts": 21
+    }
+  },
+  {
+    "id": 106,
+    "name": "Harry Brook",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 38,
+      "Runs": 311,
+      "SR": 122.1
+    }
+  },
+  {
+    "id": 107,
+    "name": "Ben Stokes",
+    "role": "All-Rounder",
+    "rating": 5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 140,
+      "Runs": 1744,
+      "Wkts": 96
+    }
+  },
+  {
+    "id": 108,
+    "name": "Jofra Archer",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 15,
+      "Wkts": 86,
+      "Econ": 8.19
+    }
+  },
+  {
+    "id": 109,
+    "name": "Mark Wood",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 36,
+      "Wkts": 32,
+      "Econ": 7.31
+    }
+  },
+  {
+    "id": 110,
+    "name": "Chris Woakes",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 142,
+      "Runs": 2121,
+      "Wkts": 31
+    }
+  },
+  {
+    "id": 111,
+    "name": "Moeen Ali",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 117,
+      "Runs": 2235,
+      "Wkts": 19
+    }
+  },
+  {
+    "id": 112,
+    "name": "Jonny Bairstow",
+    "role": "Wicketkeeper",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 45,
+      "Runs": 1550,
+      "SR": 128.9
+    }
+  },
+  {
+    "id": 113,
+    "name": "David Warner",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 62,
+      "Runs": 751,
+      "SR": 123.3
+    }
+  },
+  {
+    "id": 114,
+    "name": "Steve Smith",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 145,
+      "Runs": 2148,
+      "SR": 149.2
+    }
+  },
+  {
+    "id": 115,
+    "name": "Glenn Phillips",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 75,
+      "Runs": 1610,
+      "SR": 123.4
+    }
+  },
+  {
+    "id": 116,
+    "name": "Kane Williamson",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 103,
+      "Runs": 3233,
+      "SR": 125.9
+    }
+  },
+  {
+    "id": 117,
+    "name": "Tim Southee",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 92,
+      "Wkts": 68,
+      "Econ": 8.63
+    }
+  },
+  {
+    "id": 118,
+    "name": "Lockie Ferguson",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 102,
+      "Wkts": 23,
+      "Econ": 9.29
+    }
+  },
+  {
+    "id": 119,
+    "name": "Adam Zampa",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 54,
+      "Wkts": 75,
+      "Econ": 9.28
+    }
+  },
+  {
+    "id": 120,
+    "name": "Josh Hazlewood",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 67,
+      "Wkts": 54,
+      "Econ": 7.47
+    }
+  },
+  {
+    "id": 121,
+    "name": "Mitchell Marsh",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 79,
+      "Runs": 1458,
+      "Wkts": 65
+    }
+  },
+  {
+    "id": 122,
+    "name": "Nathan Lyon",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 122,
+      "Wkts": 34,
+      "Econ": 7.38
+    }
+  },
+  {
+    "id": 123,
+    "name": "Kieron Pollard",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 143,
+      "Runs": 518,
+      "Wkts": 38
+    }
+  },
+  {
+    "id": 124,
+    "name": "Shimron Hetmyer",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 126,
+      "Runs": 1819,
+      "SR": 148.9
+    }
+  },
+  {
+    "id": 125,
+    "name": "Jason Holder",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 126,
+      "Runs": 796,
+      "Wkts": 28
+    }
+  },
+  {
+    "id": 126,
+    "name": "Alzarri Joseph",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 84,
+      "Wkts": 120,
+      "Econ": 7.41
+    }
+  },
+  {
+    "id": 127,
+    "name": "Rovman Powell",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 79,
+      "Runs": 1213,
+      "SR": 135.5
+    }
+  },
+  {
+    "id": 128,
+    "name": "Faf du Plessis",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 89,
+      "Runs": 982,
+      "SR": 147.4
+    }
+  },
+  {
+    "id": 129,
+    "name": "Lungi Ngidi",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 128,
+      "Wkts": 47,
+      "Econ": 9.49
+    }
+  },
+  {
+    "id": 130,
+    "name": "Marco Jansen",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 35,
+      "Runs": 2163,
+      "Wkts": 37
+    }
+  },
+  {
+    "id": 131,
+    "name": "Aiden Markram",
+    "role": "Batsman",
+    "rating": 4.5,
+    "basePrice": 20000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 111,
+      "Runs": 2336,
+      "SR": 133.0
+    }
+  },
+  {
+    "id": 132,
+    "name": "Tristan Stubbs",
+    "role": "Wicketkeeper",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 124,
+      "Runs": 4020,
+      "SR": 121.0
+    }
+  },
+  {
+    "id": 133,
+    "name": "Dewald Brevis",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 28,
+      "Runs": 3235,
+      "SR": 144.5
+    }
+  },
+  {
+    "id": 134,
+    "name": "Gerald Coetzee",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 79,
+      "Wkts": 174,
+      "Econ": 8.43
+    }
+  },
+  {
+    "id": 135,
+    "name": "Naveen-ul-Haq",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 132,
+      "Wkts": 68,
+      "Econ": 8.46
+    }
+  },
+  {
+    "id": 136,
+    "name": "Fazalhaq Farooqi",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 79,
+      "Wkts": 41,
+      "Econ": 9.4
+    }
+  },
+  {
+    "id": 137,
+    "name": "Rahmanullah Gurbaz",
+    "role": "Wicketkeeper",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 77,
+      "Runs": 862,
+      "SR": 155.8
+    }
+  },
+  {
+    "id": 138,
+    "name": "Mujeeb Ur Rahman",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 72,
+      "Wkts": 59,
+      "Econ": 8.26
+    }
+  },
+  {
+    "id": 139,
+    "name": "Shakib Al Hasan",
+    "role": "All-Rounder",
+    "rating": 4.5,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 97,
+      "Runs": 1645,
+      "Wkts": 12
+    }
+  },
+  {
+    "id": 140,
+    "name": "Mustafizur Rahman",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 15000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 69,
+      "Wkts": 77,
+      "Econ": 8.34
+    }
+  },
+  {
+    "id": 141,
+    "name": "Maheesh Theekshana",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 72,
+      "Wkts": 68,
+      "Econ": 9.32
+    }
+  },
+  {
+    "id": 142,
+    "name": "Dilshan Madushanka",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 50,
+      "Wkts": 82,
+      "Econ": 7.74
+    }
+  },
+  {
+    "id": 143,
+    "name": "Noor Ahmad",
+    "role": "Bowler",
+    "rating": 4.5,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 57,
+      "Wkts": 60,
+      "Econ": 8.44
+    }
+  },
+  {
+    "id": 144,
+    "name": "Finn Allen",
+    "role": "Batsman",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 42,
+      "Runs": 3561,
+      "SR": 123.9
+    }
+  },
+  {
+    "id": 145,
+    "name": "Matt Henry",
+    "role": "Bowler",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 10,
+      "Wkts": 144,
+      "Econ": 8.85
+    }
+  },
+  {
+    "id": 146,
+    "name": "Tom Latham",
+    "role": "Wicketkeeper",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 31,
+      "Runs": 1009,
+      "SR": 153.6
+    }
+  },
+  {
+    "id": 147,
+    "name": "Jimmy Neesham",
+    "role": "All-Rounder",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 40,
+      "Runs": 2372,
+      "Wkts": 93
+    }
+  },
+  {
+    "id": 148,
+    "name": "Sikandar Raza",
+    "role": "All-Rounder",
+    "rating": 4,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 136,
+      "Runs": 1578,
+      "Wkts": 41
+    }
+  },
+  {
+    "id": 149,
+    "name": "Joshua Little",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 56,
+      "Wkts": 132,
+      "Econ": 8.29
+    }
+  },
+  {
+    "id": 150,
+    "name": "Spencer Johnson",
+    "role": "Bowler",
+    "rating": 3.5,
+    "basePrice": 10000000,
+    "isForeign": true,
+    "stats": {
+      "Matches": 130,
+      "Wkts": 174,
+      "Econ": 8.42
+    }
+  }
+]
