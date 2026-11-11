@@ -79,3 +79,16 @@ sdk.json
 projects.json
 players_data.txt
 Y/
+IPL/
+css_dump.css
+html_dump.txt
+js_dump.txt
+js_symbols_found.txt
+analyze_css.py
+dump_html.py
+dump_js.py
+extract_css.py
+find_js_symbols.py
+inspect_app.py
+inspect_html.py
+

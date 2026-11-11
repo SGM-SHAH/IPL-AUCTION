@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IPL Auction Pro 2025 | Premium Edition</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>IPL Auction | Franchise Simulator & Live Bidding</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --gold: #fbc02d;
@@ -24,501 +27,901 @@
       --muted: #aab4cc;
       --font-head: 'Bebas Neue', sans-serif;
       --font-body: 'Poppins', sans-serif;
-      --ipl-indigo: #1a237e;
+      --panel-bg: #111827;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: var(--font-body);
-      background: var(--bg);
+      background: #0b0f19;
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(ellipse 60% 40% at 10% 0%, rgba(0, 229, 255, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 90% 100%, rgba(245, 197, 24, 0.06) 0%, transparent 60%);
     }
 
-    .hidden { display: none !important; }
+    .hidden {
+      display: none !important;
+    }
 
     /* === LOADER === */
     #loading-overlay {
-      position: fixed; inset: 0; z-index: 10000; background: #07080f;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: #07080f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       transition: opacity 0.6s ease, visibility 0.6s ease;
     }
-    #loading-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .loader-title { font-family: var(--font-head); font-size: 2.5rem; color: var(--cyan); margin-top: 5rem; letter-spacing: 4px; animation: pulse 1.5s ease infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-    /* === BANTER LOADER === */
-    .banter-loader {
-      position: relative;
-      width: 72px;
-      height: 72px;
+    #loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
-    .banter-loader__box {
-      float: left;
-      position: relative;
-      width: 20px;
-      height: 20px;
-      margin-right: 6px;
+
+    .loader-title {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-top: 1.5rem;
+      letter-spacing: 3px;
     }
-    .banter-loader__box:before {
-      content: "";
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: var(--cyan);
+
+    /* === CLEAN MINIMAL SPINNER === */
+    .loader-spinner {
+      width: 38px;
+      height: 38px;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+      border-top-color: var(--gold);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--cyan);
+      animation: spin 0.8s linear infinite;
     }
-    .banter-loader__box:nth-child(3n) { margin-right: 0; margin-bottom: 6px; }
-    .banter-loader__box:nth-child(1):before,
-    .banter-loader__box:nth-child(4):before { margin-left: 26px; }
-    .banter-loader__box:nth-child(3):before { margin-top: 52px; }
-    .banter-loader__box:last-child { margin-bottom: 0; }
 
-    @keyframes moveBox-1 {
-      9.0909090909%  { transform: translate(-26px,0); }
-      18.1818181818% { transform: translate(0px,0); }
-      27.2727272727% { transform: translate(0px,0); }
-      36.3636363636% { transform: translate(26px,0); }
-      45.4545454545% { transform: translate(26px,26px); }
-      54.5454545455% { transform: translate(26px,26px); }
-      63.6363636364% { transform: translate(26px,26px); }
-      72.7272727273% { transform: translate(26px,0px); }
-      81.8181818182% { transform: translate(0px,0px); }
-      90.9090909091% { transform: translate(-26px,0px); }
-      100%           { transform: translate(0px,0px); }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
-    .banter-loader__box:nth-child(1) { animation: moveBox-1 4s infinite; }
-
-    @keyframes moveBox-2 {
-      9.0909090909%  { transform: translate(0,0); }
-      18.1818181818% { transform: translate(26px,0); }
-      27.2727272727% { transform: translate(0px,0); }
-      36.3636363636% { transform: translate(26px,0); }
-      45.4545454545% { transform: translate(26px,26px); }
-      54.5454545455% { transform: translate(26px,26px); }
-      63.6363636364% { transform: translate(26px,26px); }
-      72.7272727273% { transform: translate(26px,26px); }
-      81.8181818182% { transform: translate(0px,26px); }
-      90.9090909091% { transform: translate(0px,26px); }
-      100%           { transform: translate(0px,0px); }
-    }
-    .banter-loader__box:nth-child(2) { animation: moveBox-2 4s infinite; }
-
-    @keyframes moveBox-3 {
-      9.0909090909%  { transform: translate(-26px,0); }
-      18.1818181818% { transform: translate(-26px,0); }
-      27.2727272727% { transform: translate(0px,0); }
-      36.3636363636% { transform: translate(-26px,0); }
-      45.4545454545% { transform: translate(-26px,0); }
-      54.5454545455% { transform: translate(-26px,0); }
-      63.6363636364% { transform: translate(-26px,0); }
-      72.7272727273% { transform: translate(-26px,0); }
-      81.8181818182% { transform: translate(-26px,-26px); }
-      90.9090909091% { transform: translate(0px,-26px); }
-      100%           { transform: translate(0px,0px); }
-    }
-    .banter-loader__box:nth-child(3) { animation: moveBox-3 4s infinite; }
-
-    @keyframes moveBox-4 {
-      9.0909090909%  { transform: translate(-26px,0); }
-      18.1818181818% { transform: translate(-26px,0); }
-      27.2727272727% { transform: translate(-26px,-26px); }
-      36.3636363636% { transform: translate(0px,-26px); }
-      45.4545454545% { transform: translate(0px,0px); }
-      54.5454545455% { transform: translate(0px,-26px); }
-      63.6363636364% { transform: translate(0px,-26px); }
-      72.7272727273% { transform: translate(0px,-26px); }
-      81.8181818182% { transform: translate(-26px,-26px); }
-      90.9090909091% { transform: translate(-26px,0px); }
-      100%           { transform: translate(0px,0px); }
-    }
-    .banter-loader__box:nth-child(4) { animation: moveBox-4 4s infinite; }
-
-    @keyframes moveBox-5 {
-      9.0909090909%  { transform: translate(0,0); }
-      18.1818181818% { transform: translate(0,0); }
-      27.2727272727% { transform: translate(0,0); }
-      36.3636363636% { transform: translate(26px,0); }
-      45.4545454545% { transform: translate(26px,0); }
-      54.5454545455% { transform: translate(26px,0); }
-      63.6363636364% { transform: translate(26px,0); }
-      72.7272727273% { transform: translate(26px,0); }
-      81.8181818182% { transform: translate(26px,-26px); }
-      90.9090909091% { transform: translate(0px,-26px); }
-      100%           { transform: translate(0px,0px); }
-    }
-    .banter-loader__box:nth-child(5) { animation: moveBox-5 4s infinite; }
-
-    @keyframes moveBox-6 {
-      9.0909090909%  { transform: translate(0,0); }
-      18.1818181818% { transform: translate(-26px,0); }
-      27.2727272727% { transform: translate(-26px,0); }
-      36.3636363636% { transform: translate(0px,0); }
-      45.4545454545% { transform: translate(0px,0); }
-      54.5454545455% { transform: translate(0px,0); }
-      63.6363636364% { transform: translate(0px,0); }
-      72.7272727273% { transform: translate(0px,26px); }
-      81.8181818182% { transform: translate(-26px,26px); }
-      90.9090909091% { transform: translate(-26px,0px); }
-      100%           { transform: translate(0px,0px); }
-    }
-    .banter-loader__box:nth-child(6) { animation: moveBox-6 4s infinite; }
-
-    @keyframes moveBox-7 {
-      9.0909090909%  { transform: translate(26px,0); }
-      18.1818181818% { transform: translate(26px,0); }
-      27.2727272727% { transform: translate(26px,0); }
-      36.3636363636% { transform: translate(0px,0); }
-      45.4545454545% { transform: translate(0px,-26px); }
-      54.5454545455% { transform: translate(26px,-26px); }
-      63.6363636364% { transform: translate(0px,-26px); }
-      72.7272727273% { transform: translate(0px,-26px); }
-      81.8181818182% { transform: translate(0px,0px); }
-      90.9090909091% { transform: translate(26px,0px); }
-      100%           { transform: translate(0px,0px); }
-    }
-    .banter-loader__box:nth-child(7) { animation: moveBox-7 4s infinite; }
-
-    @keyframes moveBox-8 {
-      9.0909090909%  { transform: translate(0,0); }
-      18.1818181818% { transform: translate(-26px,0); }
-      27.2727272727% { transform: translate(-26px,-26px); }
-      36.3636363636% { transform: translate(0px,-26px); }
-      45.4545454545% { transform: translate(0px,-26px); }
-      54.5454545455% { transform: translate(0px,-26px); }
-      63.6363636364% { transform: translate(0px,-26px); }
-      72.7272727273% { transform: translate(0px,-26px); }
-      81.8181818182% { transform: translate(26px,-26px); }
-      90.9090909091% { transform: translate(26px,0px); }
-      100%           { transform: translate(0px,0px); }
-    }
-    .banter-loader__box:nth-child(8) { animation: moveBox-8 4s infinite; }
-
-    @keyframes moveBox-9 {
-      9.0909090909%  { transform: translate(-26px,0); }
-      18.1818181818% { transform: translate(-26px,0); }
-      27.2727272727% { transform: translate(0px,0); }
-      36.3636363636% { transform: translate(-26px,0); }
-      45.4545454545% { transform: translate(0px,0); }
-      54.5454545455% { transform: translate(0px,0); }
-      63.6363636364% { transform: translate(-26px,0); }
-      72.7272727273% { transform: translate(-26px,0); }
-      81.8181818182% { transform: translate(-52px,0); }
-      90.9090909091% { transform: translate(-26px,0); }
-      100%           { transform: translate(0px,0); }
-    }
-    .banter-loader__box:nth-child(9) { animation: moveBox-9 4s infinite; }
 
     /* === LAYOUT === */
-    #app { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
-    .screen { display: none; width: 100%; max-width: 1400px; }
-    .screen.active { display: block; animation: fadeUp 0.4s ease both; }
-    
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; backdrop-filter: blur(20px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-    
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    #app {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .screen {
+      display: none;
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    .screen.active {
+      display: block;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* === COMPONENTS === */
-    h1, h2, h3 { font-family: var(--font-head); letter-spacing: 2px; text-transform: uppercase; }
-    .heading-xl { font-size: clamp(3rem, 8vw, 5rem); line-height: 1; }
-    .cyan { color: var(--cyan); }
-    .gold { color: var(--gold); }
-    .green { color: var(--green); }
-    .muted { color: var(--muted); }
-    
-    input, select { width: 100%; padding: 1rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 12px; color: #fff; font-family: var(--font-body); outline: none; transition: 0.3s; }
-    input:focus { border-color: var(--cyan); box-shadow: 0 0 15px var(--cyan-dim); }
-    select option { background: var(--bg); color: var(--text); font-family: var(--font-body); }
-    
-    .btn { cursor: pointer; border: none; border-radius: 14px; font-family: var(--font-head); font-weight: 700; transition: 0.3s; letter-spacing: 1px; }
-    .btn-primary { background: var(--cyan); color: #000; padding: 1.2rem; font-size: 1.4rem; width: 100%; box-shadow: 0 4px 15px var(--cyan-dim); }
-    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 8px 25px var(--cyan-dim); }
-    
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-head);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .heading-xl {
+      font-size: clamp(3rem, 8vw, 5rem);
+      line-height: 1;
+    }
+
+    .cyan {
+      color: var(--cyan);
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: #fff;
+      font-family: var(--font-body);
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+    }
+
+    select option {
+      background: #0d122b;
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+
+    .btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-head);
+      font-weight: 700;
+      transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #0b0f19;
+      padding: 1rem 1.4rem;
+      font-size: 1.25rem;
+      width: 100%;
+      box-shadow: none;
+    }
+
+    .btn-primary:hover {
+      background: #f9a825;
+      box-shadow: none;
+    }
+
     /* === AUCTION GRID === */
-    .auction-grid { display: grid; grid-template-columns: 280px 1fr 300px; gap: 1.5rem; height: 90vh; }
-    .side-col { display: flex; flex-direction: column; gap: 1rem; overflow-y: auto; }
-    .center-col { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
-    
-    .player-spotlight { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 24px; padding: 3rem; text-align: center; width: 100%; max-width: 500px; position: relative; }
-    .player-name { font-size: 4.5rem; color: var(--cyan); line-height: 1; margin: 0.5rem 0; }
-    
-    .bid-block { background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem; text-align: center; width: 100%; }
-    .bid-val { font-family: var(--font-head); font-size: 4rem; color: var(--green); text-shadow: 0 0 20px var(--green-dim); }
-    
-    .timer-ring { width: 90px; height: 90px; border-radius: 50%; border: 4px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 2.5rem; }
-    .timer-ring.danger { color: var(--red); border-color: var(--red); box-shadow: 0 0 20px var(--red-dim); animation: pulse 0.8s infinite; }
+    .auction-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr 300px;
+      gap: 1.5rem;
+      height: 90vh;
+    }
+
+    .side-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow-y: auto;
+    }
+
+    .center-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .player-spotlight {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .player-name {
+      font-size: 3.5rem;
+      color: #ffffff;
+      line-height: 1.1;
+      margin: 0.5rem 0;
+    }
+
+    .bid-block {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .bid-val {
+      font-family: var(--font-head);
+      font-size: 4rem;
+      color: var(--green);
+      text-shadow: 0 0 20px var(--green-dim);
+    }
+
+    .timer-ring {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 4px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+    }
+
+    .timer-ring.danger {
+      color: var(--red);
+      border-color: var(--red);
+      box-shadow: 0 0 20px var(--red-dim);
+      animation: pulse 0.8s infinite;
+    }
 
     /* === STEP LOADER OVERLAY === */
     #step-loader {
-      position: fixed; inset: 0; z-index: 20000; background: rgba(7,8,15,0.92);
-      display: none; flex-direction: column; align-items: center; justify-content: center;
-      backdrop-filter: blur(6px); transition: opacity 0.3s ease;
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      background: rgba(7, 8, 15, 0.92);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+      transition: opacity 0.3s ease;
     }
-    #step-loader.active { display: flex; animation: fadeIn 0.2s ease; }
+
+    #step-loader.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
     #step-loader .step-msg {
-      font-family: var(--font-head); font-size: 1.4rem; color: var(--cyan);
-      margin-top: 4rem; letter-spacing: 3px; animation: pulse 1.2s ease infinite;
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-top: 1.5rem;
+      letter-spacing: 2px;
     }
 
     /* === SOLD CARD === */
     #sold-overlay {
-      position: fixed; inset: 0; z-index: 19000; background: rgba(7,8,15,0.92);
-      display: none; flex-direction: column; align-items: center; justify-content: center;
-      backdrop-filter: blur(8px);
+      position: fixed;
+      inset: 0;
+      z-index: 19000;
+      background: rgba(11, 15, 25, 0.88);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
     }
-    #sold-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
-    #sold-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+    #sold-overlay.active {
+      display: flex;
+      animation: fadeIn 0.15s ease;
+    }
+
     #sold-card {
-      position: relative; z-index: 2;
-      background: linear-gradient(135deg, #121420 0%, #1a1f3a 100%);
-      border: 2px solid var(--gold); border-radius: 28px;
-      padding: 3rem 4rem; text-align: center;
-      box-shadow: 0 0 60px rgba(251,192,45,0.3), 0 20px 60px rgba(0,0,0,0.8);
-      animation: soldPop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;
-      max-width: 480px; width: 90%;
+      position: relative;
+      z-index: 2;
+      background: #0d122b;
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 2.5rem 3rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.15s ease both;
+      max-width: 480px;
+      width: 90%;
     }
-    @keyframes soldPop {
-      from { opacity: 0; transform: scale(0.6) translateY(40px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
-    }
+
     #sold-stamp {
-      font-family: var(--font-head); font-size: 5rem; color: var(--gold);
-      letter-spacing: 6px; line-height: 1;
-      text-shadow: 0 0 40px rgba(251,192,45,0.8);
-      animation: stampIn 0.5s 0.2s cubic-bezier(0.175,0.885,0.32,1.275) both;
+      font-family: var(--font-head);
+      font-size: 3.5rem;
+      color: var(--gold);
+      letter-spacing: 4px;
+      line-height: 1;
+      margin-bottom: 0.5rem;
     }
-    @keyframes stampIn {
-      from { transform: scale(2) rotate(-15deg); opacity: 0; }
-      to   { transform: scale(1) rotate(0deg); opacity: 1; }
-    }
+
     #sold-player-name {
-      font-family: var(--font-head); font-size: 3rem; color: #fff;
-      letter-spacing: 2px; margin: 1rem 0 0.5rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      font-family: var(--font-head);
+      font-size: 2.6rem;
+      color: #ffffff;
+      letter-spacing: 2px;
+      margin: 0.5rem 0 0.3rem;
     }
-    #sold-details { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+    #sold-details {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
     #sold-price {
-      font-family: var(--font-head); font-size: 2.5rem;
-      color: var(--green); letter-spacing: 2px;
-      text-shadow: 0 0 20px rgba(46,125,50,0.5);
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      color: var(--gold);
+      letter-spacing: 1px;
     }
+
     #sold-team {
-      margin-top: 1rem; font-family: var(--font-head); font-size: 1.8rem;
-      color: var(--cyan); letter-spacing: 3px;
+      margin-top: 1rem;
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      color: #ffffff;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .sold-bar {
-      height: 3px; border-radius: 2px; margin: 1.5rem auto 0;
-      background: linear-gradient(90deg, var(--gold), var(--cyan), var(--gold));
-      background-size: 200% 100%; animation: shimmer 1.5s linear infinite;
+      height: 2px;
+      border-radius: 1px;
+      margin: 1.2rem auto 0;
+      background: var(--gold);
+      opacity: 0.3;
       width: 80%;
     }
-    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
     /* (playing11-modal is used as a modal-overlay, no separate screen CSS needed) */
 
     .p11-header {
-      text-align: center; padding: 2rem 1rem 1rem;
+      text-align: center;
+      padding: 2rem 1rem 1rem;
     }
+
     .p11-tabs {
-      display: flex; justify-content: center; gap: 0; margin: 0 auto 2rem;
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      border-radius: 14px; width: fit-content; overflow: hidden;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: 0 auto 2rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: fit-content;
+      overflow: hidden;
     }
+
     .p11-tab {
-      padding: 0.7rem 2rem; cursor: pointer; font-family: var(--font-head);
-      font-size: 1rem; letter-spacing: 1px; color: var(--muted);
-      transition: 0.2s; border: none; background: none;
+      padding: 0.6rem 1.6rem;
+      cursor: pointer;
+      font-family: var(--font-head);
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+      transition: 0.15s ease;
+      border: none;
+      background: none;
+      border-radius: 4px;
     }
-    .p11-tab.active { background: var(--gold); color: #000; }
+
+    .p11-tab.active {
+      background: var(--gold);
+      color: #0b0f19;
+    }
 
     .p11-grid {
-      display: grid; grid-template-columns: 1fr 350px; gap: 1.5rem;
-      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
     }
-    @media (max-width: 800px) { .p11-grid { grid-template-columns: 1fr; } }
+
+    @media (max-width: 800px) {
+      .p11-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .p11-pool-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 1.5rem; backdrop-filter: blur(20px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      backdrop-filter: blur(20px);
     }
+
     .p11-pool-title {
-      font-family: var(--font-head); font-size: 1.2rem; color: var(--cyan);
-      letter-spacing: 2px; margin-bottom: 1rem;
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
     }
+
     .p11-player-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.7rem 0.8rem; border-radius: 12px; cursor: pointer;
-      transition: 0.2s; margin-bottom: 0.4rem;
-      border: 1px solid transparent; background: rgba(255,255,255,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.15s ease;
+      margin-bottom: 0.4rem;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
     }
-    .p11-player-row:hover { background: var(--surface-hover); border-color: var(--gold-dim); }
+
+    .p11-player-row:hover {
+      background: var(--surface-hover);
+      border-color: var(--gold-dim);
+    }
+
     .p11-player-row.in-squad {
-      background: rgba(251,192,45,0.08); border-color: var(--gold);
+      background: rgba(251, 192, 45, 0.08);
+      border-color: var(--gold);
     }
-    .p11-player-row.disabled { opacity: 0.4; pointer-events: none; }
+
+    .p11-player-row.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
     .p11-player-badge {
-      width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; font-weight: 700; flex-shrink: 0;
-      transition: 0.2s; font-family: var(--font-head);
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: 0.15s ease;
+      font-family: var(--font-head);
+      background: rgba(255, 255, 255, 0.05);
     }
+
     .p11-player-row.in-squad .p11-player-badge {
-      border-color: var(--gold); background: var(--gold); color: #000;
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #0b0f19;
     }
-    .p11-player-name { font-weight: 600; font-size: 0.85rem; flex: 1; margin: 0 0.8rem; }
-    .p11-player-meta { font-size: 0.65rem; color: var(--muted); }
+
+    .p11-player-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      flex: 1;
+      margin: 0 0.8rem;
+    }
+
+    .p11-player-meta {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
     .p11-role-tag {
-      font-size: 0.55rem; padding: 0.15rem 0.4rem; border-radius: 6px;
-      font-weight: 700; letter-spacing: 0.5px;
+      font-size: 0.55rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
-    .role-bat   { background: rgba(66,165,245,0.2); color: #42a5f5; }
-    .role-bowl  { background: rgba(239,83,80,0.2);  color: #ef5350; }
-    .role-ar    { background: rgba(102,187,106,0.2); color: #66bb6a; }
-    .role-wk    { background: rgba(255,167,38,0.2);  color: #ffa726; }
+
+    .role-bat {
+      background: rgba(66, 165, 245, 0.2);
+      color: #42a5f5;
+    }
+
+    .role-bowl {
+      background: rgba(239, 83, 80, 0.2);
+      color: #ef5350;
+    }
+
+    .role-ar {
+      background: rgba(102, 187, 106, 0.2);
+      color: #66bb6a;
+    }
+
+    .role-wk {
+      background: rgba(255, 167, 38, 0.2);
+      color: #ffa726;
+    }
 
     .p11-panel {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 1.5rem; backdrop-filter: blur(20px);
-      position: sticky; top: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 1rem;
     }
+
     .p11-counter-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
     }
+
     .p11-counter {
-      background: rgba(0,0,0,0.3); border-radius: 12px; padding: 0.8rem;
-      text-align: center; border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      padding: 0.8rem;
+      text-align: center;
+      border: 1px solid var(--border);
     }
+
     .p11-counter .val {
-      font-family: var(--font-head); font-size: 1.8rem; line-height: 1;
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      line-height: 1;
     }
-    .p11-counter .lbl { font-size: 0.55rem; color: var(--muted); letter-spacing: 1px; margin-top: 0.2rem; }
-    .p11-slots { display: grid; gap: 0.4rem; }
+
+    .p11-counter .lbl {
+      font-size: 0.55rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-top: 0.2rem;
+    }
+
+    .p11-slots {
+      display: grid;
+      gap: 0.4rem;
+    }
+
     .p11-slot {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.5rem 0.7rem; border-radius: 10px;
-      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 0.7rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
       font-size: 0.78rem;
     }
-    .p11-slot.filled { border-color: var(--gold); background: rgba(251,192,45,0.05); }
-    .p11-slot-num {
-      width: 20px; height: 20px; border-radius: 50%; background: var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.6rem; font-weight: 700; flex-shrink: 0;
+
+    .p11-slot.filled {
+      border-color: var(--gold);
+      background: rgba(251, 192, 45, 0.05);
     }
-    .p11-slot.filled .p11-slot-num { background: var(--gold); color: #000; }
+
+    .p11-slot-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .p11-slot.filled .p11-slot-num {
+      background: var(--gold);
+      color: #0b0f19;
+    }
 
     /* All-teams leaderboard */
     .p11-all-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
     }
+
     .p11-team-card {
-      background: var(--surface); border: 1px solid var(--gold-dim);
-      border-radius: 20px; padding: 1.5rem; backdrop-filter: blur(20px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      backdrop-filter: blur(20px);
     }
+
     .p11-team-header {
-      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;
-      padding-bottom: 0.8rem; border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
     }
-    .p11-team-emoji { font-size: 2rem; }
-    .p11-team-name { font-family: var(--font-head); font-size: 1.6rem; color: var(--gold); }
-    .p11-team-owner { font-size: 0.7rem; color: var(--muted); }
+
+    .p11-team-name {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      color: var(--gold);
+    }
+
+    .p11-team-owner {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
     .p11-final-player {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       font-size: 0.8rem;
     }
-    .p11-final-player:last-child { border-bottom: none; }
+
+    .p11-final-player:last-child {
+      border-bottom: none;
+    }
+
     .p11-captain-badge {
-      font-size: 0.5rem; background: var(--gold); color: #000;
-      padding: 0.1rem 0.3rem; border-radius: 4px; font-weight: 700;
+      font-size: 0.5rem;
+      background: var(--gold);
+      color: #000;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+      font-weight: 700;
     }
 
     /* === TRADING === */
     .modal-overlay {
-      position: fixed; inset: 0; z-index: 10500; background: rgba(0,0,0,0.85);
-      display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px);
+      position: fixed;
+      inset: 0;
+      z-index: 10500;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
     }
-    .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .modal-card { 
-      background: #121420; border: 1px solid var(--border); border-radius: 24px; 
-      width: 90%; max-width: 600px; padding: 2rem; position: relative;
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
     }
-    .modal-title { font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
-    
-    .trade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .trade-col { display: flex; flex-direction: column; gap: 0.5rem; }
-    .trade-list { height: 300px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 0.5rem; border: 1px solid var(--border); }
-    .trade-item { 
-      padding: 0.8rem; border-radius: 10px; cursor: pointer; transition: 0.2s;
-      margin-bottom: 0.4rem; border: 1px solid transparent; background: rgba(255,255,255,0.03); 
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
-    .trade-item:hover { background: var(--surface-hover); border-color: var(--gold); }
-    .trade-item.selected { background: var(--gold-dim); border-color: var(--gold); }
-    .trade-item { display: flex; justify-content: space-between; align-items: center; }
-    .trade-item .rating { font-size: 0.6rem; color: var(--gold); }
+
+    .modal-card {
+      background: #0d122b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 600px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .trade-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .trade-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .trade-list {
+      height: 300px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      padding: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .trade-item {
+      padding: 0.7rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-bottom: 0.4rem;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .trade-item:hover {
+      background: var(--surface-hover);
+      border-color: var(--gold);
+    }
+
+    .trade-item.selected {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+    }
+
+    .trade-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .trade-item .rating {
+      font-size: 0.6rem;
+      color: var(--gold);
+    }
 
     /* Mobile */
     @media (max-width: 1000px) {
-        .auction-grid { grid-template-columns: 1fr; height: auto; padding-bottom: 80px; }
-        .side-col { display: none; }
-        #app { padding: 1rem; }
-        .player-spotlight { padding: 2rem 1rem; }
-        .player-name { font-size: 3rem; }
-        
-        .center-col, .side-col { display: none; }
-        .center-col.mobile-active, .side-col.mobile-active { display: flex; }
+      .auction-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding-bottom: 80px;
+      }
 
-        .mobile-nav {
-            display: flex; position: fixed; bottom: 0; left: 0; right: 0;
-            background: #121420; border-top: 1px solid var(--border);
-            height: 70px; z-index: 9000; justify-content: space-around; align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .nav-item { 
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
-            color: var(--muted); font-size: 0.7rem; font-weight: 600; cursor: pointer;
-        }
-        .nav-item.active { color: var(--cyan); }
-        .nav-item i { font-size: 1.2rem; }
+      .side-col {
+        display: none;
+      }
+
+      #app {
+        padding: 1rem;
+      }
+
+      .player-spotlight {
+        padding: 2rem 1rem;
+      }
+
+      .player-name {
+        font-size: 3rem;
+      }
+
+      .center-col,
+      .side-col {
+        display: none;
+      }
+
+      .center-col.mobile-active,
+      .side-col.mobile-active {
+        display: flex;
+      }
+
+      .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #121420;
+        border-top: 1px solid var(--border);
+        height: 70px;
+        z-index: 9000;
+        justify-content: space-around;
+        align-items: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: var(--muted);
+        font-size: 0.7rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .nav-item.active {
+        color: var(--cyan);
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+      }
     }
+
     @media (min-width: 1001px) {
-        .mobile-nav { display: none; }
-        .center-col, .side-col { display: flex !important; }
+      .mobile-nav {
+        display: none;
+      }
+
+      .center-col,
+      .side-col {
+        display: flex !important;
+      }
+    }
+
+    /* === TEAM BADGES & STATUS TAGS === */
+    .team-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .team-badge.team-CSK { background: #fbc02d; color: #0b0e17; border-color: #fbc02d; }
+    .team-badge.team-MI  { background: #004ba0; color: #ffffff; border-color: #004ba0; }
+    .team-badge.team-RCB { background: #d32f2f; color: #ffffff; border-color: #d32f2f; }
+    .team-badge.team-KKR { background: #3a225d; color: #fbc02d; border-color: #fbc02d; }
+    .team-badge.team-SRH { background: #f26522; color: #ffffff; border-color: #f26522; }
+    .team-badge.team-RR  { background: #ea1a7f; color: #ffffff; border-color: #ea1a7f; }
+    .team-badge.team-DC  { background: #0078bc; color: #ffffff; border-color: #0078bc; }
+    .team-badge.team-PBKS{ background: #ed1b24; color: #ffffff; border-color: #ed1b24; }
+    .team-badge.team-LSG { background: #0057b8; color: #ffffff; border-color: #0057b8; }
+    .team-badge.team-GT  { background: #1b2133; color: #dbbe6e; border-color: #dbbe6e; }
+
+    .tag-overseas {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      background: rgba(227, 242, 253, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(227, 242, 253, 0.3);
+      margin-left: 0.4rem;
+      vertical-align: middle;
     }
   </style>
 </head>
+
 <body class="dark">
   <div id="loading-overlay">
-    <div class="banter-loader">
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-      <div class="banter-loader__box"></div>
-    </div>
-    <div class="loader-title">IPL AUCTION PRO</div>
-    <p class="muted" style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; margin-top: 1rem;">Connecting to Stadium Realtime Database...</p>
+    <div class="loader-spinner"></div>
+    <div class="loader-title">IPL AUCTION</div>
+    <p class="muted" style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; margin-top: 1rem;">
+      Connecting to live auction server...</p>
   </div>
 
   <div id="app">
     <!-- Landing -->
     <div id="landing-screen" class="screen active">
       <div class="card" style="max-width: 500px; margin: 0 auto; text-align: center;">
-        <h1 class="heading-xl">IPL AUCTION <span class="cyan">PRO</span></h1>
-        <p class="muted" style="margin-bottom: 2rem;">2025 PREMIUM FRANCHISE EDITION</p>
-        
+        <h1 class="heading-xl">IPL <span class="gold">AUCTION</span></h1>
+        <p class="muted" style="margin-bottom: 2rem; font-size: 0.85rem; letter-spacing: 1px;">OFFICIAL FRANCHISE BIDDING SIMULATOR &bull; REAL-TIME SYNC</p>
+
         <div style="display: grid; gap: 1.5rem;">
           <div style="text-align: left;">
             <label class="muted" style="font-size: 0.7rem; letter-spacing: 1px;">OWNER NAME</label>
@@ -527,30 +930,37 @@
           <div style="text-align: left;">
             <label class="muted" style="font-size: 0.7rem; letter-spacing: 1px;">TEAM</label>
             <select id="host-team">
-               <option value="">Choose Team</option>
-               <option value="CSK">CSK</option><option value="MI">MI</option>
-               <option value="RCB">RCB</option><option value="KKR">KKR</option>
-               <option value="SRH">SRH</option><option value="RR">RR</option>
-               <option value="DC">DC</option><option value="PBKS">PBKS</option>
-               <option value="LSG">LSG</option><option value="GT">GT</option>
+              <option value="">Choose Team</option>
+              <option value="CSK">CSK</option>
+              <option value="MI">MI</option>
+              <option value="RCB">RCB</option>
+              <option value="KKR">KKR</option>
+              <option value="SRH">SRH</option>
+              <option value="RR">RR</option>
+              <option value="DC">DC</option>
+              <option value="PBKS">PBKS</option>
+              <option value="LSG">LSG</option>
+              <option value="GT">GT</option>
             </select>
           </div>
           <div style="text-align: left;">
             <label class="muted" style="font-size: 0.7rem; letter-spacing: 1px;">BID DURATION</label>
             <select id="room-timer">
-               <option value="15">15 SECONDS (DEFAULT)</option>
-               <option value="10">10 SECONDS</option>
-               <option value="5">5 SECONDS</option>
+              <option value="15">15 SECONDS (DEFAULT)</option>
+              <option value="10">10 SECONDS</option>
+              <option value="5">5 SECONDS</option>
             </select>
           </div>
-          <button class="btn btn-primary" onclick="createRoom()">🚀 CREATE AUCTION ROOM</button>
-          
-          <div style="margin: 1rem 0; color: var(--muted);">OR</div>
-          
+          <button class="btn btn-primary" onclick="createRoom()">CREATE AUCTION ROOM</button>
+
+          <div style="margin: 1rem 0; color: var(--muted); font-size: 0.8rem; letter-spacing: 2px;">OR</div>
+
           <div style="text-align: left;">
-            <input type="text" id="join-code" placeholder="JOIN CODE (E.g. AE4F2)" style="text-align: center; font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 4px;">
+            <input type="text" id="join-code" placeholder="JOIN CODE (E.g. AE4F2)"
+              style="text-align: center; font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 4px;">
           </div>
-          <button class="btn" style="background: var(--surface); color: var(--text); padding: 1rem;" onclick="joinRoom()">🚪 JOIN EXISTING ROOM</button>
+          <button class="btn" style="background: var(--surface); color: var(--text); padding: 1rem;"
+            onclick="joinRoom()">JOIN EXISTING ROOM</button>
         </div>
       </div>
     </div>
@@ -558,16 +968,24 @@
     <!-- Waiting -->
     <div id="waiting-screen" class="screen">
       <div class="card text-center">
-        <h2 style="font-size: 3rem;">LOBBY <span class="cyan">WAITING</span></h2>
-        <p class="muted">Share this code with other owners</p>
-        <div id="display-room-code" style="font-family: var(--font-head); font-size: 4.5rem; color: var(--cyan); letter-spacing: 8px; margin: 1rem 0;">-----</div>
-        <div id="waiting-participants" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0;"></div>
-        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-            <button id="host-start-btn" class="btn btn-primary hidden" style="width: auto; padding: 1rem 3rem;" onclick="startAuction()">⚡ START AUCTION</button>
-            <button class="btn" style="background: var(--red); color: #fff; padding: 1rem 2rem;" onclick="exitRoom()">EXIT</button>
-            <button id="host-close-btn" class="btn hidden" style="background: rgba(255,255,255,0.1); color: var(--red); border: 1px solid var(--red-dim); padding: 1rem 2rem;" onclick="closeRoom()">CLOSE ROOM</button>
+        <h2 style="font-size: 3rem;">AUCTION ROOM <span class="gold">LOBBY</span></h2>
+        <p class="muted">Share this room code with other franchise owners to join</p>
+        <div id="display-room-code"
+          style="font-family: var(--font-head); font-size: 4.5rem; color: var(--gold); letter-spacing: 8px; margin: 1rem 0;">
+          -----</div>
+        <div id="waiting-participants"
+          style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0;">
         </div>
-        <p id="waiting-msg" class="muted animate-pulse" style="margin-top: 1rem;">WAITING FOR HOST...</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+          <button id="host-start-btn" class="btn btn-primary hidden" style="width: auto; padding: 1rem 3rem;"
+            onclick="startAuction()">START AUCTION</button>
+          <button class="btn" style="background: var(--red); color: #fff; padding: 1rem 2rem;"
+            onclick="exitRoom()">EXIT</button>
+          <button id="host-close-btn" class="btn hidden"
+            style="background: rgba(255,255,255,0.1); color: var(--red); border: 1px solid var(--red-dim); padding: 1rem 2rem;"
+            onclick="closeRoom()">CLOSE ROOM</button>
+        </div>
+        <p id="waiting-msg" class="muted" style="margin-top: 1rem;">WAITING FOR HOST TO START AUCTION...</p>
       </div>
     </div>
 
@@ -575,46 +993,55 @@
     <div id="auction-screen" class="screen">
       <div class="auction-grid">
         <div class="side-col">
-            <div class="card" style="padding: 1.5rem; height: 100%; display: flex; flex-direction: column;">
-                <div id="my-team-name" class="gold">MY TEAM</div>
-                <div style="margin: 1rem 0; background: var(--ipl-indigo); padding: 1rem; border-radius: 12px; text-align: center; border: 1px solid var(--border);">
-                    <div class="muted" style="font-size: 0.6rem;">PURSE</div>
-                    <div id="my-purse" class="gold" style="font-family: var(--font-head); font-size: 2.2rem;">₹120.00 Cr</div>
-                </div>
-                <div id="my-roster-list" style="flex:1; overflow-y: auto;"></div>
+          <div class="card" style="padding: 1.5rem; height: 100%; display: flex; flex-direction: column;">
+            <div id="my-team-name" class="gold">MY TEAM</div>
+            <div
+              style="margin: 1rem 0; background: var(--panel-bg); padding: 1rem; border-radius: 6px; text-align: center; border: 1px solid var(--border);">
+              <div class="muted" style="font-size: 0.6rem;">PURSE</div>
+              <div id="my-purse" class="gold" style="font-family: var(--font-head); font-size: 2.2rem;">₹120.00 Cr</div>
             </div>
+            <div id="my-roster-list" style="flex:1; overflow-y: auto;"></div>
+          </div>
         </div>
-        
+
         <div class="center-col">
-            <div class="player-spotlight">
-                <div id="player-progress" class="muted" style="position: absolute; top: 1.5rem; left: 1.5rem; font-size: 0.7rem;">PLAYER 0/150</div>
-                <div class="timer-ring safe" id="timer-display" style="position: absolute; top: 1rem; right: 1rem;">15</div>
-                <div id="player-role" class="muted" style="letter-spacing: 2px; font-weight: 600;">BATSMAN</div>
-                <h2 id="player-name" class="player-name">---</h2>
-                <div id="player-rating" class="gold" style="font-size: 1.2rem; letter-spacing: 4px;">★★★★★</div>
-                <div id="player-stats-row" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;"></div>
+          <div class="player-spotlight">
+            <div id="player-progress" class="muted"
+              style="position: absolute; top: 1.5rem; left: 1.5rem; font-size: 0.7rem;">PLAYER 0/150</div>
+            <div class="timer-ring safe" id="timer-display" style="position: absolute; top: 1rem; right: 1rem;">15</div>
+            <div id="player-role" class="muted" style="letter-spacing: 2px; font-weight: 600;">BATSMAN</div>
+            <h2 id="player-name" class="player-name">---</h2>
+            <div id="player-rating" class="gold" style="font-family: var(--font-head); font-size: 1.1rem; letter-spacing: 1px;">RATING: 5.0 / 5</div>
+            <div id="player-stats-row" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
             </div>
-            
-            <div class="bid-block">
-                <div class="muted" style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 0.5rem;">CURRENT BID</div>
-                <div id="bid-display" class="bid-val">₹0</div>
-                <div class="muted" style="font-size: 0.8rem;">LEADER: <strong id="highest-bidder" style="color: #fff;">---</strong></div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
-                    <button class="btn btn-primary" style="grid-column: span 2; font-size: 2rem;" onclick="placeBid()">BID NOW</button>
-                    <button id="host-end-auction-btn" class="btn hidden" style="grid-column: span 2; background: var(--red); color: #fff; padding: 0.8rem; font-size: 1.2rem; margin-top: 0.5rem;" onclick="endAuction()">🔴 END AUCTION NOW</button>
-                </div>
-                <!-- Removed the manual SOLD option as requested -->
+          </div>
+
+          <div class="bid-block">
+            <div class="muted" style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 0.5rem;">CURRENT BID</div>
+            <div id="bid-display" class="bid-val">₹0</div>
+            <div class="muted" style="font-size: 0.8rem;">LEADER: <strong id="highest-bidder"
+                style="color: #fff;">---</strong></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+              <button class="btn btn-primary" style="grid-column: span 2; font-size: 2rem;" onclick="placeBid()">BID
+                NOW</button>
+              <button id="host-end-auction-btn" class="btn hidden"
+                style="grid-column: span 2; background: var(--red); color: #fff; padding: 0.8rem; font-size: 1.2rem; margin-top: 0.5rem;"
+                onclick="endAuction()">END AUCTION</button>
             </div>
+            <!-- Removed the manual SOLD option as requested -->
+          </div>
         </div>
-        
+
         <div class="side-col">
-            <div class="card" style="padding: 1.5rem; height: 100%;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                    <h3 class="muted">RIVALS</h3>
-                    <button class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.7rem; background: var(--red-dim); color: var(--red);" onclick="exitRoom()">EXIT</button>
-                </div>
-                <div id="competitors-list" style="display: grid; gap: 1rem;"></div>
+          <div class="card" style="padding: 1.5rem; height: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <h3 class="muted">RIVALS</h3>
+              <button class="btn"
+                style="padding: 0.4rem 0.8rem; font-size: 0.7rem; background: var(--red-dim); color: var(--red);"
+                onclick="exitRoom()">EXIT</button>
             </div>
+            <div id="competitors-list" style="display: grid; gap: 1rem;"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -622,7 +1049,8 @@
     <!-- Trade Modal -->
     <div id="trade-modal" class="modal-overlay">
       <div class="modal-card">
-        <button class="btn" style="position: absolute; top:1rem; right:1rem; background:none; font-size: 1.5rem;" onclick="closeTradeModal()">✕</button>
+        <button class="btn" style="position: absolute; top:1rem; right:1rem; background:none; font-size: 1.5rem;"
+          onclick="closeTradeModal()">&times;</button>
         <h2 class="modal-title cyan">INITIATE <span class="white">TRADE</span></h2>
         <div class="trade-grid">
           <div class="trade-col">
@@ -634,7 +1062,8 @@
             <div id="target-trade-list" class="trade-list"></div>
           </div>
         </div>
-        <button id="send-trade-btn" class="btn btn-primary" style="margin-top: 1.5rem;" onclick="confirmTradeRequest()">🚀 SEND TRADE OFFER</button>
+        <button id="send-trade-btn" class="btn btn-primary" style="margin-top: 1.5rem;"
+          onclick="confirmTradeRequest()">SEND TRADE OFFER</button>
       </div>
     </div>
 
@@ -644,54 +1073,50 @@
         <h2 class="modal-title gold">INCOMING OFFER!</h2>
         <div id="trade-alert-msg" class="muted" style="margin-bottom: 2rem;">Host wants to trade X for Y</div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-          <button class="btn" style="background: var(--green); color:#000;" onclick="respondToTrade(true)">ACCEPT</button>
-          <button class="btn" style="background: var(--red); color:#fff;" onclick="respondToTrade(false)">DECLINE</button>
+          <button class="btn" style="background: var(--green); color:#000;"
+            onclick="respondToTrade(true)">ACCEPT</button>
+          <button class="btn" style="background: var(--red); color:#fff;"
+            onclick="respondToTrade(false)">DECLINE</button>
         </div>
       </div>
     </div>
 
     <!-- Step Loader Overlay -->
     <div id="step-loader">
-      <div class="banter-loader">
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-        <div class="banter-loader__box"></div>
-      </div>
+      <div class="loader-spinner"></div>
       <div class="step-msg" id="step-loader-msg">PLEASE WAIT...</div>
     </div>
 
-    <!-- Sold Congratulations Card -->
+    <!-- Sold Card -->
     <div id="sold-overlay">
-      <canvas id="sold-canvas"></canvas>
       <div id="sold-card">
-        <div id="sold-stamp">🔨 SOLD!</div>
-        <div id="sold-player-name">—</div>
-        <div id="sold-details">Role • Rating</div>
+        <div id="sold-stamp">SOLD</div>
+        <div id="sold-player-name">-</div>
+        <div id="sold-details">Role &bull; Rating</div>
         <div id="sold-price">₹0 Cr</div>
-        <div id="sold-team">— TEAM</div>
+        <div id="sold-team">- TEAM</div>
         <div class="sold-bar"></div>
       </div>
     </div>
 
     <!-- Playing 11 Modal (post-auction popup) -->
-    <div id="playing11-modal" class="modal-overlay" style="z-index: 18000; align-items: flex-start; padding: 1rem; overflow-y: auto;">
-      <div style="background: #0d122b; border: 1px solid var(--gold-dim); border-radius: 24px; width: 100%; max-width: 1000px; margin: 0 auto; padding: 2rem; position: relative; min-height: 90vh; box-shadow: 0 0 60px rgba(251,192,45,0.15);">
+    <div id="playing11-modal" class="modal-overlay"
+      style="z-index: 18000; align-items: flex-start; padding: 1rem; overflow-y: auto;">
+      <div
+        style="background: #0d122b; border: 1px solid var(--border); border-radius: 8px; width: 100%; max-width: 1000px; margin: 0 auto; padding: 2rem; position: relative; min-height: 90vh; box-shadow: 0 10px 40px rgba(0,0,0,0.6);">
         <!-- Close / Exit -->
-        <button class="btn" style="position: absolute; top: 1rem; right: 1rem; background: var(--red-dim); color: var(--red); font-size: 0.8rem; padding: 0.4rem 0.9rem; border: 1px solid var(--red-dim);" onclick="exitRoom()">EXIT ROOM</button>
+        <button class="btn"
+          style="position: absolute; top: 1rem; right: 1rem; background: var(--red-dim); color: var(--red); font-size: 0.8rem; padding: 0.4rem 0.9rem; border: 1px solid var(--red-dim);"
+          onclick="exitRoom()">EXIT ROOM</button>
 
         <div class="p11-header" style="padding-top: 0;">
-          <h1 style="font-size: clamp(2rem, 5vw, 3.5rem);" class="gold">🏏 SQUAD <span class="cyan">BUILDER</span></h1>
-          <p class="muted" style="font-size: 0.75rem; letter-spacing: 2px; margin-top: 0.4rem;">SELECT YOUR PLAYING 11 &bull; MAX 4 FOREIGN PLAYERS</p>
+          <h1 style="font-size: clamp(2rem, 5vw, 3.5rem);" class="gold">PLAYING 11 <span class="cyan">BUILDER</span></h1>
+          <p class="muted" style="font-size: 0.75rem; letter-spacing: 2px; margin-top: 0.4rem;">SELECT YOUR PLAYING 11
+            &bull; MAX 4 FOREIGN PLAYERS</p>
         </div>
         <div class="p11-tabs">
-          <button class="p11-tab active" id="tab-mysquad" onclick="switchP11Tab('mysquad')">&#9889; YOUR SQUAD</button>
-          <button class="p11-tab" id="tab-allteams" onclick="switchP11Tab('allteams')">&#127942; ALL TEAMS</button>
+          <button class="p11-tab active" id="tab-mysquad" onclick="switchP11Tab('mysquad')">YOUR SQUAD</button>
+          <button class="p11-tab" id="tab-allteams" onclick="switchP11Tab('allteams')">ALL TEAMS</button>
         </div>
 
         <!-- MY SQUAD TAB -->
@@ -714,7 +1139,7 @@
               </div>
               <div id="p11-slots" class="p11-slots"></div>
               <button class="btn btn-primary" style="margin-top: 1.2rem; font-size: 1.1rem;" onclick="saveP11()">
-                &#10003; LOCK IN PLAYING 11
+                LOCK IN PLAYING 11
               </button>
             </div>
           </div>
@@ -741,7 +1166,8 @@
     </nav>
   </div>
 
-  <div id="toasts" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 11000; display: grid; gap: 0.5rem;"></div>
+  <div id="toasts" style="position: fixed; bottom: 2rem; right: 2rem; z-index: 11000; display: grid; gap: 0.5rem;">
+  </div>
 
   <!-- Global helpers: Toast, Step Loader, Sold Card, Sparkles -->
   <script>
@@ -750,7 +1176,7 @@
       const c = colors[color] || colors.cyan;
       const el = document.createElement('div');
       el.textContent = msg;
-      el.style.cssText = `background:#121420;border:1px solid ${c};color:${c};padding:0.8rem 1.2rem;border-radius:12px;font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.6);animation:fadeUp 0.3s ease both;`;
+      el.style.cssText = `background:#121420;border:1px solid ${c};color:${c};padding:0.8rem 1.2rem;border-radius:6px;font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.6);animation:fadeUp 0.3s ease both;`;
       document.getElementById('toasts').appendChild(el);
       setTimeout(() => el.remove(), 3500);
     }
@@ -764,74 +1190,24 @@
       document.getElementById('step-loader').classList.remove('active');
     }
 
-    // ── Sparkle / confetti system ──
-    let _sparkleRAF = null;
-    function launchSparkles() {
-      const canvas  = document.getElementById('sold-canvas');
-      const ctx     = canvas.getContext('2d');
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const COLORS = ['#fbc02d','#e3f2fd','#4fc3f7','#fff176','#ff8a65','#a5d6a7','#ce93d8'];
-      const particles = Array.from({length: 120}, () => ({
-        x: canvas.width  * (0.3 + Math.random() * 0.4),
-        y: canvas.height * (0.3 + Math.random() * 0.2),
-        vx: (Math.random() - 0.5) * 14,
-        vy: (Math.random() - 1.4) * 12,
-        r: 4 + Math.random() * 6,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        alpha: 1,
-        rot: Math.random() * Math.PI * 2,
-        rotV: (Math.random() - 0.5) * 0.2,
-        shape: Math.random() > 0.4 ? 'rect' : 'circle'
-      }));
-
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let alive = false;
-        particles.forEach(p => {
-          if (p.alpha <= 0) return;
-          alive = true;
-          p.x  += p.vx;  p.y  += p.vy;
-          p.vy += 0.35;  // gravity
-          p.vx *= 0.98;
-          p.rot += p.rotV;
-          p.alpha = Math.max(0, p.alpha - 0.012);
-          ctx.save();
-          ctx.globalAlpha = p.alpha;
-          ctx.fillStyle   = p.color;
-          ctx.translate(p.x, p.y);
-          ctx.rotate(p.rot);
-          if (p.shape === 'rect') ctx.fillRect(-p.r, -p.r * 0.4, p.r * 2, p.r * 0.8);
-          else { ctx.beginPath(); ctx.arc(0, 0, p.r * 0.5, 0, Math.PI * 2); ctx.fill(); }
-          ctx.restore();
-        });
-        if (alive) _sparkleRAF = requestAnimationFrame(draw);
-        else ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-      if (_sparkleRAF) cancelAnimationFrame(_sparkleRAF);
-      draw();
-    }
-
-    // ── Sold card ──
-    function showSoldCard(playerName, role, rating, price, teamName, teamEmoji, durationMs = 3000) {
+    // ── Sold card display ──
+    function showSoldCard(playerName, role, rating, price, teamName, durationMs = 2600) {
       document.getElementById('sold-player-name').textContent = playerName;
-      document.getElementById('sold-details').textContent = `${role}  •  ${'★'.repeat(Math.floor(rating))}${rating % 1 ? '½' : ''}`;
+      document.getElementById('sold-details').textContent = `${role} • Rating ${rating} / 5`;
       document.getElementById('sold-price').textContent = '₹' + (price / 10000000).toFixed(2) + ' Cr';
-      document.getElementById('sold-team').textContent = `${teamEmoji}  ${teamName}`;
+      document.getElementById('sold-team').innerHTML = getTeamBadge(teamName) + ` <span style="margin-left: 0.5rem;">${teamName}</span>`;
       document.getElementById('sold-overlay').classList.add('active');
-      launchSparkles();
       return new Promise(resolve => {
         setTimeout(() => {
           document.getElementById('sold-overlay').classList.remove('active');
-          if (_sparkleRAF) { cancelAnimationFrame(_sparkleRAF); _sparkleRAF = null; }
           resolve();
         }, durationMs);
       });
     }
   </script>
 
-  <script id="players-data-raw" type="application/json">[{"id": 1, "name": "Virat Kohli", "role": "Batsman", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 252, "Runs": 8004, "SR": 131.9}}, {"id": 2, "name": "Rohit Sharma", "role": "Batsman", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 257, "Runs": 6628, "SR": 131.1}}, {"id": 3, "name": "Jasprit Bumrah", "role": "Bowler", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 133, "Wkts": 165, "Econ": 7.3}}, {"id": 4, "name": "Rashid Khan", "role": "Bowler", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 121, "Wkts": 149, "Econ": 6.73}}, {"id": 5, "name": "Hardik Pandya", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 137, "Runs": 2525, "Wkts": 64}}, {"id": 6, "name": "Suryakumar Yadav", "role": "Batsman", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 3594, "SR": 145.3}}, {"id": 7, "name": "Rishabh Pant", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 111, "Runs": 3284, "SR": 148.9}}, {"id": 8, "name": "Shubman Gill", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 103, "Runs": 3216, "SR": 135.7}}, {"id": 9, "name": "Travis Head", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 25, "Runs": 772, "SR": 184.6}}, {"id": 10, "name": "Sunil Narine", "role": "All-Rounder", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 176, "Runs": 1534, "Wkts": 180}}, {"id": 11, "name": "Andre Russell", "role": "All-Rounder", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 127, "Runs": 2484, "Wkts": 115}}, {"id": 12, "name": "Ravindra Jadeja", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 240, "Runs": 2959, "Wkts": 160}}, {"id": 13, "name": "Heinrich Klaasen", "role": "Wicketkeeper", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 35, "Runs": 927, "SR": 175.6}}, {"id": 14, "name": "Nicholas Pooran", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 76, "Runs": 1769, "SR": 159.2}}, {"id": 15, "name": "Jos Buttler", "role": "Wicketkeeper", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 107, "Runs": 3582, "SR": 147.2}}, {"id": 16, "name": "Pat Cummins", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 58, "Wkts": 63, "Econ": 8.42}}, {"id": 17, "name": "Mitchell Starc", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 41, "Wkts": 51, "Econ": 8.21}}, {"id": 18, "name": "Ruturaj Gaikwad", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 66, "Runs": 2380, "SR": 136.9}}, {"id": 19, "name": "Yashasvi Jaiswal", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 53, "Runs": 1607, "SR": 150.8}}, {"id": 20, "name": "KL Rahul", "role": "Wicketkeeper", "rating": 4, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 132, "Runs": 4683, "SR": 134.6}}, {"id": 21, "name": "Quinton de Kock", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 107, "Runs": 3157, "SR": 134.1}}, {"id": 22, "name": "Trent Boult", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 104, "Wkts": 121, "Econ": 8.23}}, {"id": 23, "name": "Arshdeep Singh", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 65, "Wkts": 76, "Econ": 8.82}}, {"id": 24, "name": "Kuldeep Yadav", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 84, "Wkts": 87, "Econ": 8.12}}, {"id": 25, "name": "Axar Patel", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 1653, "Wkts": 123}}, {"id": 26, "name": "Rinku Singh", "role": "Batsman", "rating": 4.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 45, "Runs": 893, "SR": 143.2}}, {"id": 27, "name": "Shivam Dube", "role": "All-Rounder", "rating": 4.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 65, "Runs": 1502, "SR": 142.1}}, {"id": 28, "name": "Phil Salt", "role": "Wicketkeeper", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 21, "Runs": 654, "SR": 175.8}}, {"id": 29, "name": "Will Jacks", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 8, "Runs": 230, "SR": 175.6}}, {"id": 30, "name": "Jake Fraser-McGurk", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 9, "Runs": 330, "SR": 234.0}}, {"id": 31, "name": "Abhishek Sharma", "role": "All-Rounder", "rating": 4.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 63, "Runs": 1376, "SR": 155.2}}, {"id": 32, "name": "Riyan Parag", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 70, "Runs": 1173, "SR": 139.2}}, {"id": 33, "name": "Matheesha Pathirana", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 20, "Wkts": 34, "Econ": 7.88}}, {"id": 34, "name": "Mohammed Siraj", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 93, "Wkts": 93, "Econ": 8.64}}, {"id": 35, "name": "Yuzvendra Chahal", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 159, "Wkts": 205, "Econ": 7.84}}, {"id": 36, "name": "Harshal Patel", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 106, "Wkts": 135, "Econ": 8.62}}, {"id": 37, "name": "Mohammed Shami", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 110, "Wkts": 127, "Econ": 8.44}}, {"id": 38, "name": "Sam Curran", "role": "All-Rounder", "rating": 4, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 59, "Runs": 883, "Wkts": 58}}, {"id": 39, "name": "Cameron Green", "role": "All-Rounder", "rating": 4, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 29, "Runs": 707, "Wkts": 16}}, {"id": 40, "name": "Glenn Maxwell", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 134, "Runs": 2771, "Wkts": 37}}, {"id": 41, "name": "Shreyas Iyer", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 115, "Runs": 3127, "SR": 125.2}}, {"id": 42, "name": "Sanju Samson", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 167, "Runs": 4419, "SR": 138.9}}, {"id": 43, "name": "Ishan Kishan", "role": "Wicketkeeper", "rating": 4, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 105, "Runs": 2644, "SR": 135.7}}, {"id": 44, "name": "Marcus Stoinis", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 96, "Runs": 1866, "Wkts": 43}}, {"id": 45, "name": "David Miller", "role": "Batsman", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 130, "Runs": 2924, "SR": 139.2}}, {"id": 46, "name": "Wanindu Hasaranga", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 26, "Wkts": 35, "Econ": 8.13}}, {"id": 47, "name": "Kagiso Rabada", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 80, "Wkts": 117, "Econ": 8.42}}, {"id": 48, "name": "Anrich Nortje", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 46, "Wkts": 60, "Econ": 8.85}}, {"id": 49, "name": "Sandeep Sharma", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 127, "Wkts": 137, "Econ": 7.92}}, {"id": 50, "name": "Mayank Yadav", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 4, "Wkts": 7, "Econ": 6.99}}, {"id": 51, "name": "T Natarajan", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 61, "Wkts": 67, "Econ": 8.83}}, {"id": 52, "name": "Ravi Bishnoi", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 66, "Wkts": 63, "Econ": 7.66}}, {"id": 53, "name": "Varun Chakravarthy", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 70, "Wkts": 83, "Econ": 7.64}}, {"id": 54, "name": "Sai Sudharsan", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 25, "Runs": 1034, "SR": 139.1}}, {"id": 55, "name": "Tilak Varma", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 38, "Runs": 1156, "SR": 146.3}}, {"id": 56, "name": "Rachin Ravindra", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 10, "Runs": 222, "SR": 160.9}}, {"id": 57, "name": "Daryl Mitchell", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 13, "Runs": 318, "SR": 142.6}}, {"id": 58, "name": "Azmatullah Omarzai", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 7, "Runs": 42, "Wkts": 4}}, {"id": 59, "name": "Mohit Sharma", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 112, "Wkts": 132, "Econ": 8.54}}, {"id": 60, "name": "MS Dhoni", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 264, "Runs": 5243, "SR": 137.5}}, {"id": 61, "name": "Ravichandran Ashwin", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 67, "Runs": 1309, "Wkts": 12}}, {"id": 62, "name": "Deepak Chahar", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 115, "Wkts": 97, "Econ": 9.35}}, {"id": 63, "name": "Shardul Thakur", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 20, "Runs": 289, "Wkts": 42}}, {"id": 64, "name": "Washington Sundar", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 127, "Runs": 529, "Wkts": 40}}, {"id": 65, "name": "Prithvi Shaw", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 122, "Runs": 937, "SR": 120.3}}, {"id": 66, "name": "Devdutt Padikkal", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 82, "Runs": 2131, "SR": 138.6}}, {"id": 67, "name": "Ajinkya Rahane", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 1373, "SR": 123.4}}, {"id": 68, "name": "Dinesh Karthik", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 111, "Runs": 741, "SR": 159.6}}, {"id": 69, "name": "Bhuvneshwar Kumar", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 51, "Wkts": 30, "Econ": 8.46}}, {"id": 70, "name": "Umesh Yadav", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 106, "Wkts": 114, "Econ": 9.11}}, {"id": 71, "name": "Tushar Deshpande", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 11, "Wkts": 167, "Econ": 9.2}}, {"id": 72, "name": "Avesh Khan", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 105, "Wkts": 23, "Econ": 8.68}}, {"id": 73, "name": "Khaleel Ahmed", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 104, "Wkts": 94, "Econ": 8.11}}, {"id": 74, "name": "Mukesh Kumar", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 113, "Wkts": 28, "Econ": 7.66}}, {"id": 75, "name": "Prasidh Krishna", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 15, "Wkts": 36, "Econ": 7.46}}, {"id": 76, "name": "Harpreet Brar", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 123, "Wkts": 40, "Econ": 7.07}}, {"id": 77, "name": "Rahul Chahar", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 34, "Wkts": 171, "Econ": 9.39}}, {"id": 78, "name": "Krunal Pandya", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 59, "Runs": 1921, "Wkts": 24}}, {"id": 79, "name": "Rahul Tewatia", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 74, "Runs": 1492, "Wkts": 83}}, {"id": 80, "name": "Shahrukh Khan", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 99, "Runs": 2463, "Wkts": 14}}, {"id": 81, "name": "Venkatesh Iyer", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 99, "Runs": 843, "Wkts": 87}}, {"id": 82, "name": "Nitish Rana", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 73, "Runs": 3685, "SR": 139.0}}, {"id": 83, "name": "Manish Pandey", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 35, "Runs": 2660, "SR": 122.1}}, {"id": 84, "name": "Karun Nair", "role": "Batsman", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 535, "SR": 153.3}}, {"id": 85, "name": "Deepak Hooda", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 20, "Runs": 1638, "Wkts": 14}}, {"id": 86, "name": "Vijay Shankar", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 109, "Runs": 424, "Wkts": 80}}, {"id": 87, "name": "Sarfaraz Khan", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 115, "Runs": 1668, "SR": 150.4}}, {"id": 88, "name": "Dhruv Jurel", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 83, "Runs": 648, "SR": 156.8}}, {"id": 89, "name": "Jitesh Sharma", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 31, "Runs": 1932, "SR": 132.4}}, {"id": 90, "name": "KS Bharat", "role": "Wicketkeeper", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 23, "Runs": 3870, "SR": 123.5}}, {"id": 91, "name": "Kedar Jadhav", "role": "All-Rounder", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 94, "Runs": 768, "Wkts": 61}}, {"id": 92, "name": "Jaydev Unadkat", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 90, "Wkts": 57, "Econ": 7.89}}, {"id": 93, "name": "Sandeep Warrier", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 46, "Wkts": 167, "Econ": 7.76}}, {"id": 94, "name": "Chetan Sakariya", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 26, "Wkts": 111, "Econ": 8.7}}, {"id": 95, "name": "Kartik Tyagi", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 120, "Wkts": 70, "Econ": 7.52}}, {"id": 96, "name": "Yash Dayal", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 43, "Wkts": 28, "Econ": 8.22}}, {"id": 97, "name": "Vidwath Kaverappa", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 113, "Wkts": 158, "Econ": 9.1}}, {"id": 98, "name": "Sai Kishore", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 31, "Wkts": 88, "Econ": 8.64}}, {"id": 99, "name": "Suyash Sharma", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 135, "Wkts": 113, "Econ": 8.7}}, {"id": 100, "name": "Manav Suthar", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 107, "Wkts": 51, "Econ": 8.5}}, {"id": 101, "name": "Nehal Wadhera", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 117, "Runs": 1736, "SR": 123.8}}, {"id": 102, "name": "Ayush Badoni", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 10, "Runs": 2068, "Wkts": 61}}, {"id": 103, "name": "Ramandeep Singh", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 128, "Runs": 877, "Wkts": 55}}, {"id": 104, "name": "Vaibhav Arora", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 88, "Wkts": 110, "Econ": 7.03}}, {"id": 105, "name": "Liam Livingstone", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 34, "Runs": 2100, "Wkts": 21}}, {"id": 106, "name": "Harry Brook", "role": "Batsman", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 38, "Runs": 311, "SR": 122.1}}, {"id": 107, "name": "Ben Stokes", "role": "All-Rounder", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 140, "Runs": 1744, "Wkts": 96}}, {"id": 108, "name": "Jofra Archer", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 15, "Wkts": 86, "Econ": 8.19}}, {"id": 109, "name": "Mark Wood", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 36, "Wkts": 32, "Econ": 7.31}}, {"id": 110, "name": "Chris Woakes", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 142, "Runs": 2121, "Wkts": 31}}, {"id": 111, "name": "Moeen Ali", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 117, "Runs": 2235, "Wkts": 19}}, {"id": 112, "name": "Jonny Bairstow", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 45, "Runs": 1550, "SR": 128.9}}, {"id": 113, "name": "David Warner", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 62, "Runs": 751, "SR": 123.3}}, {"id": 114, "name": "Steve Smith", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 145, "Runs": 2148, "SR": 149.2}}, {"id": 115, "name": "Glenn Phillips", "role": "Wicketkeeper", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 75, "Runs": 1610, "SR": 123.4}}, {"id": 116, "name": "Kane Williamson", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 103, "Runs": 3233, "SR": 125.9}}, {"id": 117, "name": "Tim Southee", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 92, "Wkts": 68, "Econ": 8.63}}, {"id": 118, "name": "Lockie Ferguson", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 102, "Wkts": 23, "Econ": 9.29}}, {"id": 119, "name": "Adam Zampa", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 54, "Wkts": 75, "Econ": 9.28}}, {"id": 120, "name": "Josh Hazlewood", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 67, "Wkts": 54, "Econ": 7.47}}, {"id": 121, "name": "Mitchell Marsh", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 79, "Runs": 1458, "Wkts": 65}}, {"id": 122, "name": "Nathan Lyon", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 122, "Wkts": 34, "Econ": 7.38}}, {"id": 123, "name": "Kieron Pollard", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 143, "Runs": 518, "Wkts": 38}}, {"id": 124, "name": "Shimron Hetmyer", "role": "Batsman", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 126, "Runs": 1819, "SR": 148.9}}, {"id": 125, "name": "Jason Holder", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 126, "Runs": 796, "Wkts": 28}}, {"id": 126, "name": "Alzarri Joseph", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 84, "Wkts": 120, "Econ": 7.41}}, {"id": 127, "name": "Rovman Powell", "role": "Batsman", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 79, "Runs": 1213, "SR": 135.5}}, {"id": 128, "name": "Faf du Plessis", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 89, "Runs": 982, "SR": 147.4}}, {"id": 129, "name": "Lungi Ngidi", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 128, "Wkts": 47, "Econ": 9.49}}, {"id": 130, "name": "Marco Jansen", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 35, "Runs": 2163, "Wkts": 37}}, {"id": 131, "name": "Aiden Markram", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 111, "Runs": 2336, "SR": 133.0}}, {"id": 132, "name": "Tristan Stubbs", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 124, "Runs": 4020, "SR": 121.0}}, {"id": 133, "name": "Dewald Brevis", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 28, "Runs": 3235, "SR": 144.5}}, {"id": 134, "name": "Gerald Coetzee", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 79, "Wkts": 174, "Econ": 8.43}}, {"id": 135, "name": "Naveen-ul-Haq", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 132, "Wkts": 68, "Econ": 8.46}}, {"id": 136, "name": "Fazalhaq Farooqi", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 79, "Wkts": 41, "Econ": 9.4}}, {"id": 137, "name": "Rahmanullah Gurbaz", "role": "Wicketkeeper", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 77, "Runs": 862, "SR": 155.8}}, {"id": 138, "name": "Mujeeb Ur Rahman", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 72, "Wkts": 59, "Econ": 8.26}}, {"id": 139, "name": "Shakib Al Hasan", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 97, "Runs": 1645, "Wkts": 12}}, {"id": 140, "name": "Mustafizur Rahman", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 69, "Wkts": 77, "Econ": 8.34}}, {"id": 141, "name": "Maheesh Theekshana", "role": "Bowler", "rating": 4.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 72, "Wkts": 68, "Econ": 9.32}}, {"id": 142, "name": "Dilshan Madushanka", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 50, "Wkts": 82, "Econ": 7.74}}, {"id": 143, "name": "Noor Ahmad", "role": "Bowler", "rating": 4.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 57, "Wkts": 60, "Econ": 8.44}}, {"id": 144, "name": "Finn Allen", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 42, "Runs": 3561, "SR": 123.9}}, {"id": 145, "name": "Matt Henry", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 10, "Wkts": 144, "Econ": 8.85}}, {"id": 146, "name": "Tom Latham", "role": "Wicketkeeper", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 31, "Runs": 1009, "SR": 153.6}}, {"id": 147, "name": "Jimmy Neesham", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 40, "Runs": 2372, "Wkts": 93}}, {"id": 148, "name": "Sikandar Raza", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 136, "Runs": 1578, "Wkts": 41}}, {"id": 149, "name": "Joshua Little", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 56, "Wkts": 132, "Econ": 8.29}}, {"id": 150, "name": "Spencer Johnson", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 130, "Wkts": 174, "Econ": 8.42}}]</script>
+  <script id="players-data-raw"
+    type="application/json">[{"id": 1, "name": "Virat Kohli", "role": "Batsman", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 252, "Runs": 8004, "SR": 131.9}}, {"id": 2, "name": "Rohit Sharma", "role": "Batsman", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 257, "Runs": 6628, "SR": 131.1}}, {"id": 3, "name": "Jasprit Bumrah", "role": "Bowler", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 133, "Wkts": 165, "Econ": 7.3}}, {"id": 4, "name": "Rashid Khan", "role": "Bowler", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 121, "Wkts": 149, "Econ": 6.73}}, {"id": 5, "name": "Hardik Pandya", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 137, "Runs": 2525, "Wkts": 64}}, {"id": 6, "name": "Suryakumar Yadav", "role": "Batsman", "rating": 5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 3594, "SR": 145.3}}, {"id": 7, "name": "Rishabh Pant", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 111, "Runs": 3284, "SR": 148.9}}, {"id": 8, "name": "Shubman Gill", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 103, "Runs": 3216, "SR": 135.7}}, {"id": 9, "name": "Travis Head", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 25, "Runs": 772, "SR": 184.6}}, {"id": 10, "name": "Sunil Narine", "role": "All-Rounder", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 176, "Runs": 1534, "Wkts": 180}}, {"id": 11, "name": "Andre Russell", "role": "All-Rounder", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 127, "Runs": 2484, "Wkts": 115}}, {"id": 12, "name": "Ravindra Jadeja", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 240, "Runs": 2959, "Wkts": 160}}, {"id": 13, "name": "Heinrich Klaasen", "role": "Wicketkeeper", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 35, "Runs": 927, "SR": 175.6}}, {"id": 14, "name": "Nicholas Pooran", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 76, "Runs": 1769, "SR": 159.2}}, {"id": 15, "name": "Jos Buttler", "role": "Wicketkeeper", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 107, "Runs": 3582, "SR": 147.2}}, {"id": 16, "name": "Pat Cummins", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 58, "Wkts": 63, "Econ": 8.42}}, {"id": 17, "name": "Mitchell Starc", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 41, "Wkts": 51, "Econ": 8.21}}, {"id": 18, "name": "Ruturaj Gaikwad", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 66, "Runs": 2380, "SR": 136.9}}, {"id": 19, "name": "Yashasvi Jaiswal", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 53, "Runs": 1607, "SR": 150.8}}, {"id": 20, "name": "KL Rahul", "role": "Wicketkeeper", "rating": 4, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 132, "Runs": 4683, "SR": 134.6}}, {"id": 21, "name": "Quinton de Kock", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 107, "Runs": 3157, "SR": 134.1}}, {"id": 22, "name": "Trent Boult", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 104, "Wkts": 121, "Econ": 8.23}}, {"id": 23, "name": "Arshdeep Singh", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 65, "Wkts": 76, "Econ": 8.82}}, {"id": 24, "name": "Kuldeep Yadav", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 84, "Wkts": 87, "Econ": 8.12}}, {"id": 25, "name": "Axar Patel", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 1653, "Wkts": 123}}, {"id": 26, "name": "Rinku Singh", "role": "Batsman", "rating": 4.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 45, "Runs": 893, "SR": 143.2}}, {"id": 27, "name": "Shivam Dube", "role": "All-Rounder", "rating": 4.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 65, "Runs": 1502, "SR": 142.1}}, {"id": 28, "name": "Phil Salt", "role": "Wicketkeeper", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 21, "Runs": 654, "SR": 175.8}}, {"id": 29, "name": "Will Jacks", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 8, "Runs": 230, "SR": 175.6}}, {"id": 30, "name": "Jake Fraser-McGurk", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 9, "Runs": 330, "SR": 234.0}}, {"id": 31, "name": "Abhishek Sharma", "role": "All-Rounder", "rating": 4.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 63, "Runs": 1376, "SR": 155.2}}, {"id": 32, "name": "Riyan Parag", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 70, "Runs": 1173, "SR": 139.2}}, {"id": 33, "name": "Matheesha Pathirana", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 20, "Wkts": 34, "Econ": 7.88}}, {"id": 34, "name": "Mohammed Siraj", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 93, "Wkts": 93, "Econ": 8.64}}, {"id": 35, "name": "Yuzvendra Chahal", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 159, "Wkts": 205, "Econ": 7.84}}, {"id": 36, "name": "Harshal Patel", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 106, "Wkts": 135, "Econ": 8.62}}, {"id": 37, "name": "Mohammed Shami", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 110, "Wkts": 127, "Econ": 8.44}}, {"id": 38, "name": "Sam Curran", "role": "All-Rounder", "rating": 4, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 59, "Runs": 883, "Wkts": 58}}, {"id": 39, "name": "Cameron Green", "role": "All-Rounder", "rating": 4, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 29, "Runs": 707, "Wkts": 16}}, {"id": 40, "name": "Glenn Maxwell", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 134, "Runs": 2771, "Wkts": 37}}, {"id": 41, "name": "Shreyas Iyer", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 115, "Runs": 3127, "SR": 125.2}}, {"id": 42, "name": "Sanju Samson", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 167, "Runs": 4419, "SR": 138.9}}, {"id": 43, "name": "Ishan Kishan", "role": "Wicketkeeper", "rating": 4, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 105, "Runs": 2644, "SR": 135.7}}, {"id": 44, "name": "Marcus Stoinis", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 96, "Runs": 1866, "Wkts": 43}}, {"id": 45, "name": "David Miller", "role": "Batsman", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 130, "Runs": 2924, "SR": 139.2}}, {"id": 46, "name": "Wanindu Hasaranga", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 26, "Wkts": 35, "Econ": 8.13}}, {"id": 47, "name": "Kagiso Rabada", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 80, "Wkts": 117, "Econ": 8.42}}, {"id": 48, "name": "Anrich Nortje", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 46, "Wkts": 60, "Econ": 8.85}}, {"id": 49, "name": "Sandeep Sharma", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 127, "Wkts": 137, "Econ": 7.92}}, {"id": 50, "name": "Mayank Yadav", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 4, "Wkts": 7, "Econ": 6.99}}, {"id": 51, "name": "T Natarajan", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 61, "Wkts": 67, "Econ": 8.83}}, {"id": 52, "name": "Ravi Bishnoi", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 66, "Wkts": 63, "Econ": 7.66}}, {"id": 53, "name": "Varun Chakravarthy", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 70, "Wkts": 83, "Econ": 7.64}}, {"id": 54, "name": "Sai Sudharsan", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 25, "Runs": 1034, "SR": 139.1}}, {"id": 55, "name": "Tilak Varma", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 38, "Runs": 1156, "SR": 146.3}}, {"id": 56, "name": "Rachin Ravindra", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 10, "Runs": 222, "SR": 160.9}}, {"id": 57, "name": "Daryl Mitchell", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 13, "Runs": 318, "SR": 142.6}}, {"id": 58, "name": "Azmatullah Omarzai", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 7, "Runs": 42, "Wkts": 4}}, {"id": 59, "name": "Mohit Sharma", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 112, "Wkts": 132, "Econ": 8.54}}, {"id": 60, "name": "MS Dhoni", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 20000000, "isForeign": false, "stats": {"Matches": 264, "Runs": 5243, "SR": 137.5}}, {"id": 61, "name": "Ravichandran Ashwin", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 67, "Runs": 1309, "Wkts": 12}}, {"id": 62, "name": "Deepak Chahar", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 115, "Wkts": 97, "Econ": 9.35}}, {"id": 63, "name": "Shardul Thakur", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 20, "Runs": 289, "Wkts": 42}}, {"id": 64, "name": "Washington Sundar", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 127, "Runs": 529, "Wkts": 40}}, {"id": 65, "name": "Prithvi Shaw", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 122, "Runs": 937, "SR": 120.3}}, {"id": 66, "name": "Devdutt Padikkal", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 82, "Runs": 2131, "SR": 138.6}}, {"id": 67, "name": "Ajinkya Rahane", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 1373, "SR": 123.4}}, {"id": 68, "name": "Dinesh Karthik", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 111, "Runs": 741, "SR": 159.6}}, {"id": 69, "name": "Bhuvneshwar Kumar", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 51, "Wkts": 30, "Econ": 8.46}}, {"id": 70, "name": "Umesh Yadav", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 106, "Wkts": 114, "Econ": 9.11}}, {"id": 71, "name": "Tushar Deshpande", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 11, "Wkts": 167, "Econ": 9.2}}, {"id": 72, "name": "Avesh Khan", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 105, "Wkts": 23, "Econ": 8.68}}, {"id": 73, "name": "Khaleel Ahmed", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 104, "Wkts": 94, "Econ": 8.11}}, {"id": 74, "name": "Mukesh Kumar", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 113, "Wkts": 28, "Econ": 7.66}}, {"id": 75, "name": "Prasidh Krishna", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 15, "Wkts": 36, "Econ": 7.46}}, {"id": 76, "name": "Harpreet Brar", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 123, "Wkts": 40, "Econ": 7.07}}, {"id": 77, "name": "Rahul Chahar", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 34, "Wkts": 171, "Econ": 9.39}}, {"id": 78, "name": "Krunal Pandya", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 59, "Runs": 1921, "Wkts": 24}}, {"id": 79, "name": "Rahul Tewatia", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 74, "Runs": 1492, "Wkts": 83}}, {"id": 80, "name": "Shahrukh Khan", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 99, "Runs": 2463, "Wkts": 14}}, {"id": 81, "name": "Venkatesh Iyer", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": false, "stats": {"Matches": 99, "Runs": 843, "Wkts": 87}}, {"id": 82, "name": "Nitish Rana", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 73, "Runs": 3685, "SR": 139.0}}, {"id": 83, "name": "Manish Pandey", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 35, "Runs": 2660, "SR": 122.1}}, {"id": 84, "name": "Karun Nair", "role": "Batsman", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 150, "Runs": 535, "SR": 153.3}}, {"id": 85, "name": "Deepak Hooda", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 20, "Runs": 1638, "Wkts": 14}}, {"id": 86, "name": "Vijay Shankar", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 109, "Runs": 424, "Wkts": 80}}, {"id": 87, "name": "Sarfaraz Khan", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 115, "Runs": 1668, "SR": 150.4}}, {"id": 88, "name": "Dhruv Jurel", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 83, "Runs": 648, "SR": 156.8}}, {"id": 89, "name": "Jitesh Sharma", "role": "Wicketkeeper", "rating": 4, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 31, "Runs": 1932, "SR": 132.4}}, {"id": 90, "name": "KS Bharat", "role": "Wicketkeeper", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 23, "Runs": 3870, "SR": 123.5}}, {"id": 91, "name": "Kedar Jadhav", "role": "All-Rounder", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 94, "Runs": 768, "Wkts": 61}}, {"id": 92, "name": "Jaydev Unadkat", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 90, "Wkts": 57, "Econ": 7.89}}, {"id": 93, "name": "Sandeep Warrier", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 46, "Wkts": 167, "Econ": 7.76}}, {"id": 94, "name": "Chetan Sakariya", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 26, "Wkts": 111, "Econ": 8.7}}, {"id": 95, "name": "Kartik Tyagi", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 120, "Wkts": 70, "Econ": 7.52}}, {"id": 96, "name": "Yash Dayal", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 43, "Wkts": 28, "Econ": 8.22}}, {"id": 97, "name": "Vidwath Kaverappa", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 113, "Wkts": 158, "Econ": 9.1}}, {"id": 98, "name": "Sai Kishore", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 31, "Wkts": 88, "Econ": 8.64}}, {"id": 99, "name": "Suyash Sharma", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 135, "Wkts": 113, "Econ": 8.7}}, {"id": 100, "name": "Manav Suthar", "role": "Bowler", "rating": 3, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 107, "Wkts": 51, "Econ": 8.5}}, {"id": 101, "name": "Nehal Wadhera", "role": "Batsman", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 117, "Runs": 1736, "SR": 123.8}}, {"id": 102, "name": "Ayush Badoni", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 10, "Runs": 2068, "Wkts": 61}}, {"id": 103, "name": "Ramandeep Singh", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 128, "Runs": 877, "Wkts": 55}}, {"id": 104, "name": "Vaibhav Arora", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": false, "stats": {"Matches": 88, "Wkts": 110, "Econ": 7.03}}, {"id": 105, "name": "Liam Livingstone", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 34, "Runs": 2100, "Wkts": 21}}, {"id": 106, "name": "Harry Brook", "role": "Batsman", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 38, "Runs": 311, "SR": 122.1}}, {"id": 107, "name": "Ben Stokes", "role": "All-Rounder", "rating": 5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 140, "Runs": 1744, "Wkts": 96}}, {"id": 108, "name": "Jofra Archer", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 15, "Wkts": 86, "Econ": 8.19}}, {"id": 109, "name": "Mark Wood", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 36, "Wkts": 32, "Econ": 7.31}}, {"id": 110, "name": "Chris Woakes", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 142, "Runs": 2121, "Wkts": 31}}, {"id": 111, "name": "Moeen Ali", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 117, "Runs": 2235, "Wkts": 19}}, {"id": 112, "name": "Jonny Bairstow", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 45, "Runs": 1550, "SR": 128.9}}, {"id": 113, "name": "David Warner", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 62, "Runs": 751, "SR": 123.3}}, {"id": 114, "name": "Steve Smith", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 145, "Runs": 2148, "SR": 149.2}}, {"id": 115, "name": "Glenn Phillips", "role": "Wicketkeeper", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 75, "Runs": 1610, "SR": 123.4}}, {"id": 116, "name": "Kane Williamson", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 103, "Runs": 3233, "SR": 125.9}}, {"id": 117, "name": "Tim Southee", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 92, "Wkts": 68, "Econ": 8.63}}, {"id": 118, "name": "Lockie Ferguson", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 102, "Wkts": 23, "Econ": 9.29}}, {"id": 119, "name": "Adam Zampa", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 54, "Wkts": 75, "Econ": 9.28}}, {"id": 120, "name": "Josh Hazlewood", "role": "Bowler", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 67, "Wkts": 54, "Econ": 7.47}}, {"id": 121, "name": "Mitchell Marsh", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 79, "Runs": 1458, "Wkts": 65}}, {"id": 122, "name": "Nathan Lyon", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 122, "Wkts": 34, "Econ": 7.38}}, {"id": 123, "name": "Kieron Pollard", "role": "All-Rounder", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 143, "Runs": 518, "Wkts": 38}}, {"id": 124, "name": "Shimron Hetmyer", "role": "Batsman", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 126, "Runs": 1819, "SR": 148.9}}, {"id": 125, "name": "Jason Holder", "role": "All-Rounder", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 126, "Runs": 796, "Wkts": 28}}, {"id": 126, "name": "Alzarri Joseph", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 84, "Wkts": 120, "Econ": 7.41}}, {"id": 127, "name": "Rovman Powell", "role": "Batsman", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 79, "Runs": 1213, "SR": 135.5}}, {"id": 128, "name": "Faf du Plessis", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 89, "Runs": 982, "SR": 147.4}}, {"id": 129, "name": "Lungi Ngidi", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 128, "Wkts": 47, "Econ": 9.49}}, {"id": 130, "name": "Marco Jansen", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 35, "Runs": 2163, "Wkts": 37}}, {"id": 131, "name": "Aiden Markram", "role": "Batsman", "rating": 4.5, "basePrice": 20000000, "isForeign": true, "stats": {"Matches": 111, "Runs": 2336, "SR": 133.0}}, {"id": 132, "name": "Tristan Stubbs", "role": "Wicketkeeper", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 124, "Runs": 4020, "SR": 121.0}}, {"id": 133, "name": "Dewald Brevis", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 28, "Runs": 3235, "SR": 144.5}}, {"id": 134, "name": "Gerald Coetzee", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 79, "Wkts": 174, "Econ": 8.43}}, {"id": 135, "name": "Naveen-ul-Haq", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 132, "Wkts": 68, "Econ": 8.46}}, {"id": 136, "name": "Fazalhaq Farooqi", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 79, "Wkts": 41, "Econ": 9.4}}, {"id": 137, "name": "Rahmanullah Gurbaz", "role": "Wicketkeeper", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 77, "Runs": 862, "SR": 155.8}}, {"id": 138, "name": "Mujeeb Ur Rahman", "role": "Bowler", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 72, "Wkts": 59, "Econ": 8.26}}, {"id": 139, "name": "Shakib Al Hasan", "role": "All-Rounder", "rating": 4.5, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 97, "Runs": 1645, "Wkts": 12}}, {"id": 140, "name": "Mustafizur Rahman", "role": "Bowler", "rating": 4, "basePrice": 15000000, "isForeign": true, "stats": {"Matches": 69, "Wkts": 77, "Econ": 8.34}}, {"id": 141, "name": "Maheesh Theekshana", "role": "Bowler", "rating": 4.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 72, "Wkts": 68, "Econ": 9.32}}, {"id": 142, "name": "Dilshan Madushanka", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 50, "Wkts": 82, "Econ": 7.74}}, {"id": 143, "name": "Noor Ahmad", "role": "Bowler", "rating": 4.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 57, "Wkts": 60, "Econ": 8.44}}, {"id": 144, "name": "Finn Allen", "role": "Batsman", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 42, "Runs": 3561, "SR": 123.9}}, {"id": 145, "name": "Matt Henry", "role": "Bowler", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 10, "Wkts": 144, "Econ": 8.85}}, {"id": 146, "name": "Tom Latham", "role": "Wicketkeeper", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 31, "Runs": 1009, "SR": 153.6}}, {"id": 147, "name": "Jimmy Neesham", "role": "All-Rounder", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 40, "Runs": 2372, "Wkts": 93}}, {"id": 148, "name": "Sikandar Raza", "role": "All-Rounder", "rating": 4, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 136, "Runs": 1578, "Wkts": 41}}, {"id": 149, "name": "Joshua Little", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 56, "Wkts": 132, "Econ": 8.29}}, {"id": 150, "name": "Spencer Johnson", "role": "Bowler", "rating": 3.5, "basePrice": 10000000, "isForeign": true, "stats": {"Matches": 130, "Wkts": 174, "Econ": 8.42}}]</script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
@@ -853,12 +1229,15 @@
     const auth = getAuth(app);
 
     const ALL_PLAYERS = JSON.parse(document.getElementById('players-data-raw').textContent);
-    const TEAM_EMOJI = { CSK: "🦁", MI: "💙", RCB: "🔴", KKR: "💜", SRH: "🟠", RR: "🩷", DC: "🔵", PBKS: "❤️", LSG: "🩵", GT: "🔷" };
+    window.getTeamBadge = function(teamCode) {
+      const code = teamCode || 'IPL';
+      return `<span class="team-badge team-${code}">${code}</span>`;
+    };
     const PURSE_LIMIT = 1200000000;
 
     let myId = localStorage.getItem('ipl_user_id') || Math.random().toString(36).substring(2, 10);
     localStorage.setItem('ipl_user_id', myId);
-    
+
     let myRoomId = '';
     let amIHost = false;
     let roomState = null;
@@ -867,159 +1246,159 @@
     // --- AUDIO SYSTEM ---
     let audioCtx = null;
     function playSound(type) {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        
-        if (type === 'bid') {
-            osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
-        } else if (type === 'sold') {
-            osc.type = 'square'; osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.4);
-            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.4);
-        }
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain); gain.connect(audioCtx.destination);
+
+      if (type === 'bid') {
+        osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+      } else if (type === 'sold') {
+        osc.type = 'square'; osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.4);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.4);
+      }
     }
 
     function hideLoader() { document.getElementById('loading-overlay').classList.add('hidden'); }
     setTimeout(hideLoader, 5000); // Emergency unlock
 
     signInAnonymously(auth).then(u => {
-        console.log("Auth Success");
-        myId = u.user.uid;
-        hideLoader();
+      console.log("Auth Success");
+      myId = u.user.uid;
+      hideLoader();
     }).catch(e => { console.error(e); hideLoader(); });
 
     // --- NAVIGATION ---
     function showScreen(id) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 
     // --- ROOM LOGIC ---
     window.createRoom = async () => {
-        const name = document.getElementById('host-name').value.trim();
-        const team = document.getElementById('host-team').value;
-        const bidTimer = parseInt(document.getElementById('room-timer').value) || 15;
-        if (!name || !team) return alert("Please enter name and select team");
+      const name = document.getElementById('host-name').value.trim();
+      const team = document.getElementById('host-team').value;
+      const bidTimer = parseInt(document.getElementById('room-timer').value) || 15;
+      if (!name || !team) return alert("Please enter name and select team");
 
-        showStepLoader('CREATING ROOM...');
-        myRoomId = Math.random().toString(36).substring(2, 7).toUpperCase();
-        amIHost = true;
+      showStepLoader('CREATING ROOM...');
+      myRoomId = Math.random().toString(36).substring(2, 7).toUpperCase();
+      amIHost = true;
 
-        const initialRoom = {
-            id: myRoomId,
-            host: myId,
-            state: 'waiting',
-            currentPlayerIdx: 0,
-            currentBid: 0,
-            highestBidder: '',
-            timer: bidTimer,
-            bidTimer: bidTimer,
-            participants: {
-                [myId]: { name, team, purse: PURSE_LIMIT, spent: 0, squad: [] }
-            }
-        };
+      const initialRoom = {
+        id: myRoomId,
+        host: myId,
+        state: 'waiting',
+        currentPlayerIdx: 0,
+        currentBid: 0,
+        highestBidder: '',
+        timer: bidTimer,
+        bidTimer: bidTimer,
+        participants: {
+          [myId]: { name, team, purse: PURSE_LIMIT, spent: 0, squad: [] }
+        }
+      };
 
-        await set(ref(db, 'rooms/' + myRoomId), initialRoom);
-        hideStepLoader();
-        initRoomWatch();
-        initTradeListener();
+      await set(ref(db, 'rooms/' + myRoomId), initialRoom);
+      hideStepLoader();
+      initRoomWatch();
+      initTradeListener();
     };
 
     window.joinRoom = async () => {
-        const code = document.getElementById('join-code').value.trim().toUpperCase();
-        const name = document.getElementById('host-name').value.trim();
-        const team = document.getElementById('host-team').value;
+      const code = document.getElementById('join-code').value.trim().toUpperCase();
+      const name = document.getElementById('host-name').value.trim();
+      const team = document.getElementById('host-team').value;
 
-        if (!code || !name || !team) return alert("Enter Join Code, Your Name and Team!");
+      if (!code || !name || !team) return alert("Enter Join Code, Your Name and Team!");
 
-        showStepLoader('JOINING ROOM...');
-        const snapshot = await get(ref(db, 'rooms/' + code));
-        if (!snapshot.exists()) { hideStepLoader(); return alert("Room not found!"); }
+      showStepLoader('JOINING ROOM...');
+      const snapshot = await get(ref(db, 'rooms/' + code));
+      if (!snapshot.exists()) { hideStepLoader(); return alert("Room not found!"); }
 
-        myRoomId = code;
-        const participants = snapshot.val().participants || {};
-        
-        // Check if team already taken
-        const isTeamTaken = Object.keys(participants).some(id => participants[id].team === team && id !== myId);
-        if (isTeamTaken) { hideStepLoader(); return alert("Team already taken!"); }
+      myRoomId = code;
+      const participants = snapshot.val().participants || {};
 
-        // Only reset purse/squad if genuinely a new participant
-        const existingMe = participants[myId];
-        const joinData = existingMe
-            ? { name, team }  // Rejoining: update name/team only
-            : { name, team, purse: PURSE_LIMIT, spent: 0, squad: [] };
-        await update(ref(db, `rooms/${code}/participants/${myId}`), joinData);
+      // Check if team already taken
+      const isTeamTaken = Object.keys(participants).some(id => participants[id].team === team && id !== myId);
+      if (isTeamTaken) { hideStepLoader(); return alert("Team already taken!"); }
 
-        hideStepLoader();
-        initRoomWatch();
-        initTradeListener();
+      // Only reset purse/squad if genuinely a new participant
+      const existingMe = participants[myId];
+      const joinData = existingMe
+        ? { name, team }  // Rejoining: update name/team only
+        : { name, team, purse: PURSE_LIMIT, spent: 0, squad: [] };
+      await update(ref(db, `rooms/${code}/participants/${myId}`), joinData);
+
+      hideStepLoader();
+      initRoomWatch();
+      initTradeListener();
     };
 
     function initRoomWatch() {
-        onValue(ref(db, 'rooms/' + myRoomId), (snapshot) => {
-            const data = snapshot.val();
-            if (!data) {
-                if (myRoomId) {
-                    alert("Room has been closed or you were disconnected.");
-                    location.reload();
-                }
-                return;
-            }
-            roomState = data;
-            amIHost = data.host === myId;
-            
-            if (data.state === 'waiting') {
-                showScreen('waiting-screen');
-                document.getElementById('display-room-code').textContent = myRoomId;
-                renderParticipants(data.participants);
-                if (amIHost) {
-                    document.getElementById('host-start-btn').classList.remove('hidden');
-                    document.getElementById('host-close-btn').classList.remove('hidden');
-                }
-                document.getElementById('waiting-msg').classList.toggle('hidden', amIHost);
-            } else if (data.state === 'auction') {
-                showScreen('auction-screen');
-                renderAuction();
-                if (amIHost && !timerInt) {
-                    startTimerLogic();
-                }
-            } else if (data.state === 'finished') {
-                if (timerInt) { clearInterval(timerInt); timerInt = null; }
-                showScreen('auction-screen');
-                renderFinished();
-            }
-        });
+      onValue(ref(db, 'rooms/' + myRoomId), (snapshot) => {
+        const data = snapshot.val();
+        if (!data) {
+          if (myRoomId) {
+            alert("Room has been closed or you were disconnected.");
+            location.reload();
+          }
+          return;
+        }
+        roomState = data;
+        amIHost = data.host === myId;
+
+        if (data.state === 'waiting') {
+          showScreen('waiting-screen');
+          document.getElementById('display-room-code').textContent = myRoomId;
+          renderParticipants(data.participants);
+          if (amIHost) {
+            document.getElementById('host-start-btn').classList.remove('hidden');
+            document.getElementById('host-close-btn').classList.remove('hidden');
+          }
+          document.getElementById('waiting-msg').classList.toggle('hidden', amIHost);
+        } else if (data.state === 'auction') {
+          showScreen('auction-screen');
+          renderAuction();
+          if (amIHost && !timerInt) {
+            startTimerLogic();
+          }
+        } else if (data.state === 'finished') {
+          if (timerInt) { clearInterval(timerInt); timerInt = null; }
+          showScreen('auction-screen');
+          renderFinished();
+        }
+      });
     }
 
     window.exitRoom = async () => {
-        if (!myRoomId) return;
-        if (confirm("Are you sure you want to exit?")) {
-            await remove(ref(db, `rooms/${myRoomId}/participants/${myId}`));
-            location.reload();
-        }
+      if (!myRoomId) return;
+      if (confirm("Are you sure you want to exit?")) {
+        await remove(ref(db, `rooms/${myRoomId}/participants/${myId}`));
+        location.reload();
+      }
     };
 
     window.closeRoom = async () => {
-        if (!amIHost || !myRoomId) return;
-        if (confirm("CLOSE ROOM? This will kick all players and delete the auction data.")) {
-            await remove(ref(db, 'rooms/' + myRoomId));
-            location.reload();
-        }
+      if (!amIHost || !myRoomId) return;
+      if (confirm("CLOSE ROOM? This will kick all players and delete the auction data.")) {
+        await remove(ref(db, 'rooms/' + myRoomId));
+        location.reload();
+      }
     };
 
     function renderParticipants(parts) {
-        const cont = document.getElementById('waiting-participants');
-        cont.innerHTML = Object.values(parts).map(p => `
+      const cont = document.getElementById('waiting-participants');
+      cont.innerHTML = Object.values(parts).map(p => `
             <div class="card" style="padding: 1rem; border-color: var(--cyan);">
-                <div style="font-size: 2rem;">${TEAM_EMOJI[p.team] || '👤'}</div>
+                <div style="margin-bottom: 0.5rem;">${getTeamBadge(p.team)}</div>
                 <div style="font-weight: 600;">${p.name}</div>
                 <div class="muted" style="font-size: 0.7rem;">${p.team}</div>
             </div>
@@ -1027,95 +1406,95 @@
     }
 
     window.startAuction = async () => {
-        showStepLoader('STARTING AUCTION...');
-        await update(ref(db, 'rooms/' + myRoomId), { state: 'auction', timer: roomState.bidTimer || 15 });
-        setTimeout(hideStepLoader, 800); // brief delay so loader is visible
+      showStepLoader('STARTING AUCTION...');
+      await update(ref(db, 'rooms/' + myRoomId), { state: 'auction', timer: roomState.bidTimer || 15 });
+      setTimeout(hideStepLoader, 800); // brief delay so loader is visible
     };
 
     function startTimerLogic() {
-        if (timerInt) clearInterval(timerInt);
-        let isProcessingSale = false;
-        
-        timerInt = setInterval(async () => {
-            if (!roomState || roomState.state !== 'auction') {
-                // Stop ticking if auction is over
-                if (roomState && roomState.state === 'finished') {
-                    clearInterval(timerInt); timerInt = null;
-                }
-                return;
-            }
-            if (isProcessingSale) return;
-            
-            let currentTime = roomState.timer ?? 15;
-            if (currentTime <= 0) {
-                // Auto sell logic if host
-                if (amIHost) {
-                    isProcessingSale = true;
-                    await processSale();
-                    isProcessingSale = false;
-                }
-                return; // Non-host: wait for host to process sale
-            }
-            // Only decrement when > 0 to prevent negative timer values
-            let newTime = currentTime - 1;
-            update(ref(db, 'rooms/' + myRoomId), { timer: newTime });
-        }, 1000);
+      if (timerInt) clearInterval(timerInt);
+      let isProcessingSale = false;
+
+      timerInt = setInterval(async () => {
+        if (!roomState || roomState.state !== 'auction') {
+          // Stop ticking if auction is over
+          if (roomState && roomState.state === 'finished') {
+            clearInterval(timerInt); timerInt = null;
+          }
+          return;
+        }
+        if (isProcessingSale) return;
+
+        let currentTime = roomState.timer ?? 15;
+        if (currentTime <= 0) {
+          // Auto sell logic if host
+          if (amIHost) {
+            isProcessingSale = true;
+            await processSale();
+            isProcessingSale = false;
+          }
+          return; // Non-host: wait for host to process sale
+        }
+        // Only decrement when > 0 to prevent negative timer values
+        let newTime = currentTime - 1;
+        update(ref(db, 'rooms/' + myRoomId), { timer: newTime });
+      }, 1000);
     }
 
     function renderAuction() {
-        const p = ALL_PLAYERS[roomState.currentPlayerIdx];
-        if (!p) return;
+      const p = ALL_PLAYERS[roomState.currentPlayerIdx];
+      if (!p) return;
 
-        document.getElementById('player-name').textContent = p.name;
-        document.getElementById('player-role').textContent = p.role;
-        document.getElementById('player-progress').textContent = `PLAYER ${roomState.currentPlayerIdx + 1} / ${ALL_PLAYERS.length}`;
-        document.getElementById('bid-display').textContent = '₹' + (roomState.currentBid / 10000000).toFixed(2) + ' Cr';
-        // Update rating stars
-        document.getElementById('player-rating').textContent = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 ? '½' : '');
-        // Update stats row
-        document.getElementById('player-stats-row').innerHTML = Object.entries(p.stats || {}).map(([k, v]) =>
-            `<div style="text-align:center; background:rgba(255,255,255,0.05); border-radius:10px; padding:0.5rem 0.8rem;">
+      document.getElementById('player-name').textContent = p.name;
+      document.getElementById('player-role').textContent = p.role;
+      document.getElementById('player-progress').textContent = `PLAYER ${roomState.currentPlayerIdx + 1} / ${ALL_PLAYERS.length}`;
+      document.getElementById('bid-display').textContent = '₹' + (roomState.currentBid / 10000000).toFixed(2) + ' Cr';
+      // Update rating stars
+      document.getElementById('player-rating').textContent = `RATING: ${p.rating} / 5`;
+      // Update stats row
+      document.getElementById('player-stats-row').innerHTML = Object.entries(p.stats || {}).map(([k, v]) =>
+        `<div style="text-align:center; background:rgba(255,255,255,0.05); border-radius:10px; padding:0.5rem 0.8rem;">
                 <div style="font-size:1rem; font-weight:700; color:var(--cyan);">${v}</div>
                 <div style="font-size:0.55rem; color:var(--muted); letter-spacing:1px;">${k}</div>
             </div>`
-        ).join('');
-        const bidder = roomState.participants[roomState.highestBidder];
-        document.getElementById('highest-bidder').textContent = bidder ? `${bidder.name} (${bidder.team})` : 'NO BIDS';
-        
-        const myData = roomState.participants[myId];
-        document.getElementById('my-team-name').textContent = myData.team + " SQUAD";
-        document.getElementById('my-purse').textContent = '₹' + (myData.purse / 10000000).toFixed(2) + ' Cr';
-        
-        const timerEl = document.getElementById('timer-display');
-        timerEl.textContent = roomState.timer;
-        timerEl.className = 'timer-ring ' + (roomState.timer <= 5 ? 'danger' : 'safe');
+      ).join('');
+      const bidder = roomState.participants[roomState.highestBidder];
+      document.getElementById('highest-bidder').textContent = bidder ? `${bidder.name} (${bidder.team})` : 'NO BIDS';
 
-        // Host controls
-        const endBtn = document.getElementById('host-end-auction-btn');
-        if (endBtn) endBtn.classList.toggle('hidden', !amIHost);
+      const myData = roomState.participants[myId];
+      document.getElementById('my-team-name').textContent = myData.team + " SQUAD";
+      document.getElementById('my-purse').textContent = '₹' + (myData.purse / 10000000).toFixed(2) + ' Cr';
 
-        // Render Rivals
-        const rivalsCont = document.getElementById('competitors-list');
-        rivalsCont.innerHTML = Object.keys(roomState.participants).filter(id => id !== myId).map(id => {
-            const p = roomState.participants[id];
-            return `
+      const timerEl = document.getElementById('timer-display');
+      timerEl.textContent = roomState.timer;
+      timerEl.className = 'timer-ring ' + (roomState.timer <= 5 ? 'danger' : 'safe');
+
+      // Host controls
+      const endBtn = document.getElementById('host-end-auction-btn');
+      if (endBtn) endBtn.classList.toggle('hidden', !amIHost);
+
+      // Render Rivals
+      const rivalsCont = document.getElementById('competitors-list');
+      rivalsCont.innerHTML = Object.keys(roomState.participants).filter(id => id !== myId).map(id => {
+        const p = roomState.participants[id];
+        return `
                 <div class="card" style="padding: 1rem; border-color: var(--border);">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-family: var(--font-head); font-size: 1.2rem;">${TEAM_EMOJI[p.team]} ${p.team}</span>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">${getTeamBadge(p.team)} <span style="font-family: var(--font-head); font-size: 1.1rem;">${p.team}</span></div>
                         <button class="btn" style="font-size: 0.6rem; padding: 0.3rem 0.6rem; background: var(--cyan-dim); color: var(--cyan); border: 1px solid var(--cyan-dim);" onclick="openTradeModal('${id}')">TRADE</button>
                     </div>
                     <div class="muted" style="font-size: 0.6rem; margin-top: 0.5rem;">PURSE: ₹${(p.purse / 10000000).toFixed(2)} Cr</div>
                     <div class="muted" style="font-size: 0.6rem;">SQUAD: ${p.squad?.length || 0}</div>
                 </div>
             `;
-        }).join('');
+      }).join('');
 
-        // Squad sidebar: show total squad size and overseas cap
-        const squad = myData.squad || [];
-        const foreignOwned = squad.filter(p => p.isForeign).length;
+      // Squad sidebar: show total squad size and overseas cap
+      const squad = myData.squad || [];
+      const foreignOwned = squad.filter(p => p.isForeign).length;
 
-        const myRoster = document.getElementById('my-roster-list');
-        myRoster.innerHTML = `
+      const myRoster = document.getElementById('my-roster-list');
+      myRoster.innerHTML = `
             <div class="muted" style="font-size: 0.6rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
                 <span>SQUAD: ${squad.length}</span>
                 <span style="color:${foreignOwned >= 8 ? 'var(--red)' : 'var(--muted)'}">OVERSEAS: ${foreignOwned}/8</span>
@@ -1123,12 +1502,12 @@
         ` + squad.map((p, i) => `
             <div style="padding: 0.5rem; border-bottom: 1px solid var(--border); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; ${p.isPlaying11 ? 'background: rgba(251, 192, 45, 0.1);' : ''}">
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
-                    <button class="btn" style="padding: 0.2rem; font-size: 1rem; background: none; color: ${p.isPlaying11 ? 'var(--gold)' : 'var(--muted)'};" onclick="togglePlaying11(${i})">
-                        ${p.isPlaying11 ? '★' : '☆'}
+                    <button class="btn" style="padding: 0.2rem 0.45rem; font-size: 0.7rem; background: ${p.isPlaying11 ? 'var(--gold)' : 'rgba(255,255,255,0.08)'}; color: ${p.isPlaying11 ? '#0b0f19' : 'var(--muted)'}; font-weight:700; border-radius:3px;" onclick="togglePlaying11(${i})">
+                        ${p.isPlaying11 ? 'XI' : '+'}
                     </button>
                     <div style="display: flex; flex-direction: column;">
-                        <span>${p.name} ${p.isForeign ? '✈️' : ''}</span>
-                        <span class="muted" style="font-size: 0.6rem;">${p.role} | ★${p.rating}</span>
+                        <span>${p.name} ${p.isForeign ? '<span class="tag-overseas">OS</span>' : ''}</span>
+                        <span class="muted" style="font-size: 0.6rem;">${p.role} | Rating: ${p.rating}</span>
                     </div>
                 </div>
                 <span class="gold" style="font-weight: 700;">₹${(p.price / 10000000).toFixed(1)}Cr</span>
@@ -1137,19 +1516,19 @@
     }
 
     window.togglePlaying11 = async (idx) => {
-        const myData = roomState.participants[myId];
-        const squad = [...(myData.squad || [])];
-        const p = squad[idx];
-        
-        if (!p.isPlaying11) {
-            const count = squad.filter(s => s.isPlaying11).length;
-            const fgnCount = squad.filter(s => s.isPlaying11 && s.isForeign).length;
-            if (count >= 11) return showToast('Squad already has 11 players in Playing 11!', 'gold');
-            if (p.isForeign && fgnCount >= 4) return showToast('Max 4 foreign players allowed in Playing 11!', 'red');
-        }
+      const myData = roomState.participants[myId];
+      const squad = [...(myData.squad || [])];
+      const p = squad[idx];
 
-        p.isPlaying11 = !p.isPlaying11;
-        await update(ref(db, `rooms/${myRoomId}/participants/${myId}`), { squad });
+      if (!p.isPlaying11) {
+        const count = squad.filter(s => s.isPlaying11).length;
+        const fgnCount = squad.filter(s => s.isPlaying11 && s.isForeign).length;
+        if (count >= 11) return showToast('Squad already has 11 players in Playing 11!', 'gold');
+        if (p.isForeign && fgnCount >= 4) return showToast('Max 4 foreign players allowed in Playing 11!', 'red');
+      }
+
+      p.isPlaying11 = !p.isPlaying11;
+      await update(ref(db, `rooms/${myRoomId}/participants/${myId}`), { squad });
     };
 
     // --- TRADING LOGIC ---
@@ -1158,443 +1537,437 @@
     let selectedTargetPlayerIdx = -1;
 
     window.openTradeModal = (targetId) => {
-        pendingTradeTarget = targetId;
-        selectedMyPlayerIdx = -1;
-        selectedTargetPlayerIdx = -1;
-        
-        const myData = roomState.participants[myId];
-        const targetData = roomState.participants[targetId];
-        
-        document.getElementById('my-trade-list').innerHTML = (myData.squad || []).map((p, i) => `
+      pendingTradeTarget = targetId;
+      selectedMyPlayerIdx = -1;
+      selectedTargetPlayerIdx = -1;
+
+      const myData = roomState.participants[myId];
+      const targetData = roomState.participants[targetId];
+
+      document.getElementById('my-trade-list').innerHTML = (myData.squad || []).map((p, i) => `
             <div class="trade-item" onclick="selectTradePlayer('my', ${i}, this)">
                 <span>${p.name}</span>
-                <span class="rating">★${p.rating}</span>
+                <span class="rating">Rating ${p.rating}</span>
             </div>
         `).join('');
-        
-        document.getElementById('target-trade-list').innerHTML = (targetData.squad || []).map((p, i) => `
+
+      document.getElementById('target-trade-list').innerHTML = (targetData.squad || []).map((p, i) => `
             <div class="trade-item" onclick="selectTradePlayer('target', ${i}, this)">
                 <span>${p.name}</span>
-                <span class="rating">★${p.rating}</span>
+                <span class="rating">Rating ${p.rating}</span>
             </div>
         `).join('');
-        
-        document.getElementById('trade-modal').classList.add('active');
+
+      document.getElementById('trade-modal').classList.add('active');
     };
 
     window.selectTradePlayer = (type, idx, el) => {
-        const parent = el.parentElement;
-        parent.querySelectorAll('.trade-item').forEach(i => i.classList.remove('selected'));
-        el.classList.add('selected');
-        if (type === 'my') selectedMyPlayerIdx = idx;
-        else selectedTargetPlayerIdx = idx;
+      const parent = el.parentElement;
+      parent.querySelectorAll('.trade-item').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      if (type === 'my') selectedMyPlayerIdx = idx;
+      else selectedTargetPlayerIdx = idx;
     };
 
     window.closeTradeModal = () => {
-        document.getElementById('trade-modal').classList.remove('active');
+      document.getElementById('trade-modal').classList.remove('active');
     };
 
     window.confirmTradeRequest = async () => {
-        if (selectedMyPlayerIdx === -1 || selectedTargetPlayerIdx === -1) return alert("Select players for trade!");
-        
-        const myData = roomState.participants[myId];
-        const targetData = roomState.participants[pendingTradeTarget];
-        
-        const tradeData = {
-            from: myId,
-            fromTeam: myData.team,
-            to: pendingTradeTarget,
-            myPlayer: myData.squad[selectedMyPlayerIdx],
-            myPlayerIdx: selectedMyPlayerIdx,
-            targetPlayer: targetData.squad[selectedTargetPlayerIdx],
-            targetPlayerIdx: selectedTargetPlayerIdx,
-            status: 'pending',
-            timestamp: Date.now()
-        };
-        
-        await set(ref(db, `rooms/${myRoomId}/trades/${myId}`), tradeData);
-        closeTradeModal();
-        alert("Trade offer sent!");
+      if (selectedMyPlayerIdx === -1 || selectedTargetPlayerIdx === -1) return alert("Select players for trade!");
+
+      const myData = roomState.participants[myId];
+      const targetData = roomState.participants[pendingTradeTarget];
+
+      const tradeData = {
+        from: myId,
+        fromTeam: myData.team,
+        to: pendingTradeTarget,
+        myPlayer: myData.squad[selectedMyPlayerIdx],
+        myPlayerIdx: selectedMyPlayerIdx,
+        targetPlayer: targetData.squad[selectedTargetPlayerIdx],
+        targetPlayerIdx: selectedTargetPlayerIdx,
+        status: 'pending',
+        timestamp: Date.now()
+      };
+
+      await set(ref(db, `rooms/${myRoomId}/trades/${myId}`), tradeData);
+      closeTradeModal();
+      alert("Trade offer sent!");
     };
 
     // Listen for incoming trades
     function initTradeListener() {
-        onValue(ref(db, `rooms/${myRoomId}/trades`), (snapshot) => {
-            const trades = snapshot.val();
-            if (!trades) return;
-            
-            Object.keys(trades).forEach(senderId => {
-                const t = trades[senderId];
-                if (t.to === myId && t.status === 'pending') {
-                    showTradeAlert(t);
-                }
-            });
+      onValue(ref(db, `rooms/${myRoomId}/trades`), (snapshot) => {
+        const trades = snapshot.val();
+        if (!trades) return;
+
+        Object.keys(trades).forEach(senderId => {
+          const t = trades[senderId];
+          if (t.to === myId && t.status === 'pending') {
+            showTradeAlert(t);
+          }
         });
+      });
     }
 
     let activeTrade = null;
     function showTradeAlert(t) {
-        activeTrade = t;
-        document.getElementById('trade-alert-msg').textContent = `${t.fromTeam} wants to swap ${t.myPlayer.name} for your ${t.targetPlayer.name}`;
-        document.getElementById('trade-alert').classList.add('active');
+      activeTrade = t;
+      document.getElementById('trade-alert-msg').textContent = `${t.fromTeam} wants to swap ${t.myPlayer.name} for your ${t.targetPlayer.name}`;
+      document.getElementById('trade-alert').classList.add('active');
     }
 
     window.respondToTrade = async (accepted) => {
-        document.getElementById('trade-alert').classList.remove('active');
-        if (!activeTrade) return;
-        
-        if (accepted) {
-            const senderId = activeTrade.from;
-            const receiverId = activeTrade.to;
-            const senderData = roomState.participants[senderId];
-            const receiverData = roomState.participants[receiverId];
-            
-            // Swap logic
-            const newSenderSquad = [...(senderData.squad || [])];
-            const newReceiverSquad = [...(receiverData.squad || [])];
-            
-            const myPlayerIndex = newSenderSquad.findIndex(p => p.id === activeTrade.myPlayer.id);
-            const targetPlayerIndex = newReceiverSquad.findIndex(p => p.id === activeTrade.targetPlayer.id);
-            
-            if (myPlayerIndex !== -1 && targetPlayerIndex !== -1) {
-                const playerFromSender = newSenderSquad.splice(myPlayerIndex, 1)[0];
-                const playerFromReceiver = newReceiverSquad.splice(targetPlayerIndex, 1)[0];
-                
-                newSenderSquad.push(playerFromReceiver);
-                newReceiverSquad.push(playerFromSender);
-                
-                await update(ref(db, `rooms/${myRoomId}/participants/${senderId}`), { squad: newSenderSquad });
-                await update(ref(db, `rooms/${myRoomId}/participants/${receiverId}`), { squad: newReceiverSquad });
-            } else {
-                alert("Trade failed! Player no longer in squad.");
-            }
+      document.getElementById('trade-alert').classList.remove('active');
+      if (!activeTrade) return;
+
+      if (accepted) {
+        const senderId = activeTrade.from;
+        const receiverId = activeTrade.to;
+        const senderData = roomState.participants[senderId];
+        const receiverData = roomState.participants[receiverId];
+
+        // Swap logic
+        const newSenderSquad = [...(senderData.squad || [])];
+        const newReceiverSquad = [...(receiverData.squad || [])];
+
+        const myPlayerIndex = newSenderSquad.findIndex(p => p.id === activeTrade.myPlayer.id);
+        const targetPlayerIndex = newReceiverSquad.findIndex(p => p.id === activeTrade.targetPlayer.id);
+
+        if (myPlayerIndex !== -1 && targetPlayerIndex !== -1) {
+          const playerFromSender = newSenderSquad.splice(myPlayerIndex, 1)[0];
+          const playerFromReceiver = newReceiverSquad.splice(targetPlayerIndex, 1)[0];
+
+          newSenderSquad.push(playerFromReceiver);
+          newReceiverSquad.push(playerFromSender);
+
+          await update(ref(db, `rooms/${myRoomId}/participants/${senderId}`), { squad: newSenderSquad });
+          await update(ref(db, `rooms/${myRoomId}/participants/${receiverId}`), { squad: newReceiverSquad });
+        } else {
+          alert("Trade failed! Player no longer in squad.");
         }
-        
-        // Clear trade
-        await remove(ref(db, `rooms/${myRoomId}/trades/${activeTrade.from}`));
-        activeTrade = null;
+      }
+
+      // Clear trade
+      await remove(ref(db, `rooms/${myRoomId}/trades/${activeTrade.from}`));
+      activeTrade = null;
     };
 
     window.switchMobileTab = (tab, el) => {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        el.classList.add('active');
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      el.classList.add('active');
 
-        const cols = document.querySelectorAll('.auction-grid > div');
-        cols.forEach(c => c.classList.remove('mobile-active'));
+      const cols = document.querySelectorAll('.auction-grid > div');
+      cols.forEach(c => c.classList.remove('mobile-active'));
 
-        if (tab === 'squad') cols[0].classList.add('mobile-active');
-        else if (tab === 'auction') cols[1].classList.add('mobile-active');
-        else if (tab === 'rivals') cols[2].classList.add('mobile-active');
+      if (tab === 'squad') cols[0].classList.add('mobile-active');
+      else if (tab === 'auction') cols[1].classList.add('mobile-active');
+      else if (tab === 'rivals') cols[2].classList.add('mobile-active');
     };
 
     // Set initial mobile tab
     setTimeout(() => {
-        const cols = document.querySelectorAll('.auction-grid > div');
-        if (cols[1]) cols[1].classList.add('mobile-active');
+      const cols = document.querySelectorAll('.auction-grid > div');
+      if (cols[1]) cols[1].classList.add('mobile-active');
     }, 1000);
 
     window.placeBid = () => {
-        if (!roomState || roomState.state !== 'auction') return;
-        const p = ALL_PLAYERS[roomState.currentPlayerIdx];
-        if (!p) return showToast("Auction is over! All players sold.", 'gold');
-        const myData = roomState.participants[myId];
-        
-        if (roomState.highestBidder === myId) return showToast("You are already the highest bidder!", 'cyan');
+      if (!roomState || roomState.state !== 'auction') return;
+      const p = ALL_PLAYERS[roomState.currentPlayerIdx];
+      if (!p) return showToast("Auction is over! All players sold.", 'gold');
+      const myData = roomState.participants[myId];
 
-        // Foreign player cap: max 8 per team
-        if (p.isForeign) {
-            const myForeignCount = (myData.squad || []).filter(s => s.isForeign).length;
-            if (myForeignCount >= 8) return showToast('Foreign player cap reached! Max 8 overseas players per team.', 'red');
-        }
+      if (roomState.highestBidder === myId) return showToast("You are already the highest bidder!", 'cyan');
 
-        // Bid increments: evaluate high ranges first, then fall back to lower increments
-        let nextBid;
-        if (roomState.currentBid === 0) nextBid = p.basePrice;
-        else if (roomState.currentBid >= 100000000) nextBid = roomState.currentBid + 20000000; // Above 10Cr: +2Cr
-        else if (roomState.currentBid >= 50000000) nextBid = roomState.currentBid + 10000000;  // Above 5Cr: +1Cr
-        else nextBid = roomState.currentBid + 5000000; // Default: +0.5Cr
+      // Foreign player cap: max 8 per team
+      if (p.isForeign) {
+        const myForeignCount = (myData.squad || []).filter(s => s.isForeign).length;
+        if (myForeignCount >= 8) return showToast('Foreign player cap reached! Max 8 overseas players per team.', 'red');
+      }
 
-        if (nextBid > myData.purse) return showToast("Not enough purse remaining!", 'red');
+      // Bid increments: evaluate high ranges first, then fall back to lower increments
+      let nextBid;
+      if (roomState.currentBid === 0) nextBid = p.basePrice;
+      else if (roomState.currentBid >= 100000000) nextBid = roomState.currentBid + 20000000; // Above 10Cr: +2Cr
+      else if (roomState.currentBid >= 50000000) nextBid = roomState.currentBid + 10000000;  // Above 5Cr: +1Cr
+      else nextBid = roomState.currentBid + 5000000; // Default: +0.5Cr
 
-        update(ref(db, 'rooms/' + myRoomId), {
-            currentBid: nextBid,
-            highestBidder: myId,
-            timer: roomState.bidTimer || 15 // Reset timer on bid
-        });
-        playSound('bid');
+      if (nextBid > myData.purse) return showToast("Not enough purse remaining!", 'red');
+
+      update(ref(db, 'rooms/' + myRoomId), {
+        currentBid: nextBid,
+        highestBidder: myId,
+        timer: roomState.bidTimer || 15 // Reset timer on bid
+      });
+      playSound('bid');
     };
 
     window.processSale = async () => {
-        if (!amIHost) return;
-        const p = ALL_PLAYERS[roomState.currentPlayerIdx];
-        if (!p) return;
-        const bidderId = roomState.highestBidder;
-        const salePrice = roomState.currentBid;
-        let winnerName = null, winnerTeam = null;
-        
-        if (bidderId) {
-            const bidder = roomState.participants[bidderId];
-            winnerName = bidder.name;
-            winnerTeam = bidder.team;
-            const newPurse = bidder.purse - salePrice;
-            const newSpent = (bidder.spent || 0) + salePrice;
-            const newSquad = [...(bidder.squad || [])];
-            newSquad.push({ ...p, price: salePrice });
-            
-            await update(ref(db, `rooms/${myRoomId}/participants/${bidderId}`), {
-                purse: newPurse,
-                spent: newSpent,
-                squad: newSquad
-            });
-            playSound('sold');
+      if (!amIHost) return;
+      const p = ALL_PLAYERS[roomState.currentPlayerIdx];
+      if (!p) return;
+      const bidderId = roomState.highestBidder;
+      const salePrice = roomState.currentBid;
+      let winnerName = null, winnerTeam = null;
 
-            // Show sold card with sparkles — waits 3s before advancing
-            await showSoldCard(
-                p.name, p.role, p.rating, salePrice,
-                winnerTeam,
-                TEAM_EMOJI[winnerTeam] || '🏏'
-            );
-        } else {
-            console.log(p.name + " went UNSOLD");
-        }
+      if (bidderId) {
+        const bidder = roomState.participants[bidderId];
+        winnerName = bidder.name;
+        winnerTeam = bidder.team;
+        const newPurse = bidder.purse - salePrice;
+        const newSpent = (bidder.spent || 0) + salePrice;
+        const newSquad = [...(bidder.squad || [])];
+        newSquad.push({ ...p, price: salePrice });
 
-        const nextIdx = roomState.currentPlayerIdx + 1;
-        if (nextIdx >= ALL_PLAYERS.length) {
-            // All players have been auctioned — end the auction
-            if (timerInt) { clearInterval(timerInt); timerInt = null; }
-            await update(ref(db, 'rooms/' + myRoomId), {
-                state: 'finished',
-                currentBid: 0,
-                highestBidder: '',
-                timer: 0
-            });
-        } else {
-            // Brief loader between players
-            showStepLoader('NEXT PLAYER INCOMING...');
-            await update(ref(db, 'rooms/' + myRoomId), {
-                currentPlayerIdx: nextIdx,
-                currentBid: 0,
-                highestBidder: '',
-                timer: roomState.bidTimer || 15
-            });
-            setTimeout(hideStepLoader, 600);
-        }
+        await update(ref(db, `rooms/${myRoomId}/participants/${bidderId}`), {
+          purse: newPurse,
+          spent: newSpent,
+          squad: newSquad
+        });
+        playSound('sold');
+
+        // Show sold card - waits before advancing
+        await showSoldCard(
+          p.name, p.role, p.rating, salePrice,
+          winnerTeam
+        );
+      } else {
+        console.log(p.name + " went UNSOLD");
+      }
+
+      const nextIdx = roomState.currentPlayerIdx + 1;
+      if (nextIdx >= ALL_PLAYERS.length) {
+        // All players have been auctioned - end the auction
+        if (timerInt) { clearInterval(timerInt); timerInt = null; }
+        await update(ref(db, 'rooms/' + myRoomId), {
+          state: 'finished',
+          currentBid: 0,
+          highestBidder: '',
+          timer: 0
+        });
+      } else {
+        // Brief loader between players
+        showStepLoader('NEXT PLAYER INCOMING...');
+        await update(ref(db, 'rooms/' + myRoomId), {
+          currentPlayerIdx: nextIdx,
+          currentBid: 0,
+          highestBidder: '',
+          timer: roomState.bidTimer || 15
+        });
+        setTimeout(hideStepLoader, 600);
+      }
     };
-    
+
     window.endAuction = async () => {
-        if (!amIHost || !myRoomId) return;
-        if (confirm("END AUCTION MANUALLY? All owners will proceed to Squad Builder.")) {
-            if (timerInt) { clearInterval(timerInt); timerInt = null; }
-            await update(ref(db, 'rooms/' + myRoomId), {
-                state: 'finished',
-                currentBid: 0,
-                highestBidder: '',
-                timer: 0
-            });
-        }
+      if (!amIHost || !myRoomId) return;
+      if (confirm("END AUCTION MANUALLY? All owners will proceed to Squad Builder.")) {
+        if (timerInt) { clearInterval(timerInt); timerInt = null; }
+        await update(ref(db, 'rooms/' + myRoomId), {
+          state: 'finished',
+          currentBid: 0,
+          highestBidder: '',
+          timer: 0
+        });
+      }
     };
 
     // ── Playing 11 helpers ──
     let myP11 = [];  // array of player objects the user selects
 
     function getRoleTag(role) {
-        if (role === 'Batsman')      return '<span class="p11-role-tag role-bat">BAT</span>';
-        if (role === 'Bowler')       return '<span class="p11-role-tag role-bowl">BOWL</span>';
-        if (role === 'Wicketkeeper') return '<span class="p11-role-tag role-wk">WK</span>';
-        return '<span class="p11-role-tag role-ar">AR</span>';
+      if (role === 'Batsman') return '<span class="p11-role-tag role-bat">BAT</span>';
+      if (role === 'Bowler') return '<span class="p11-role-tag role-bowl">BOWL</span>';
+      if (role === 'Wicketkeeper') return '<span class="p11-role-tag role-wk">WK</span>';
+      return '<span class="p11-role-tag role-ar">AR</span>';
     }
 
     // Guard: only open the P11 modal once per finished session
     let p11ModalShown = false;
 
     function renderFinished() {
-        // Stay on auction-screen with an "Auction Complete" backdrop
-        showScreen('auction-screen');
-        // Replace auction grid content with the end-of-auction summary banner
-        const grid = document.querySelector('.auction-grid');
-        if (grid) {
-            grid.innerHTML = `
+      // Stay on auction-screen with an "Auction Complete" backdrop
+      showScreen('auction-screen');
+      // Replace auction grid content with the end-of-auction summary banner
+      const grid = document.querySelector('.auction-grid');
+      if (grid) {
+        grid.innerHTML = `
                 <div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center;
                             justify-content: center; gap: 1.5rem; min-height: 80vh; text-align: center;">
                     <div style="font-family: var(--font-head); font-size: clamp(3rem, 8vw, 6rem);
-                                color: var(--gold); text-shadow: 0 0 40px rgba(251,192,45,0.6); letter-spacing: 4px;">
-                        AUCTION COMPLETE!
+                                color: var(--gold); letter-spacing: 4px;">
+                        AUCTION COMPLETE
                     </div>
                     <div class="muted" style="font-size: 1rem; letter-spacing: 2px;">
                         ALL ${ALL_PLAYERS.length} PLAYERS HAVE BEEN AUCTIONED
                     </div>
-                    <div class="muted" style="font-size: 0.85rem;">Opening Squad Builder...</div>
-                    <div class="banter-loader" style="margin-top: 1rem;">
-                        <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
-                        <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
-                        <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
-                        <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
-                        <div class="banter-loader__box"></div>
-                    </div>
+                    <div class="muted" style="font-size: 0.85rem;">Opening Playing 11 Builder...</div>
+                    <div class="loader-spinner" style="margin: 1rem auto 0;"></div>
                 </div>`;
-        }
-        // Open the Playing 11 popup window — guard prevents re-opening on subsequent Firebase snapshots
-        if (p11ModalShown) return;
-        p11ModalShown = true;
-        setTimeout(() => {
-            const myData = roomState.participants[myId];
-            myP11 = (myData.squad || []).filter(p => p.isPlaying11);
-            renderP11Pool();
-            renderP11Panel();
-            renderAllTeams();
-            document.getElementById('playing11-modal').classList.add('active');
-            switchP11Tab('mysquad');
-        }, 1800);
+      }
+      // Open the Playing 11 popup window - guard prevents re-opening on subsequent Firebase snapshots
+      if (p11ModalShown) return;
+      p11ModalShown = true;
+      setTimeout(() => {
+        const myData = roomState.participants[myId];
+        myP11 = (myData.squad || []).filter(p => p.isPlaying11);
+        renderP11Pool();
+        renderP11Panel();
+        renderAllTeams();
+        document.getElementById('playing11-modal').classList.add('active');
+        switchP11Tab('mysquad');
+      }, 1800);
     }
 
     function renderP11Pool() {
-        const myData = roomState.participants[myId];
-        const squad  = myData.squad || [];
-        const list   = document.getElementById('p11-pool-list');
+      const myData = roomState.participants[myId];
+      const squad = myData.squad || [];
+      const list = document.getElementById('p11-pool-list');
 
-        if (!squad.length) {
-            list.innerHTML = '<div class="muted" style="text-align:center;padding:2rem;">No players bought yet.</div>';
-            return;
-        }
+      if (!squad.length) {
+        list.innerHTML = '<div class="muted" style="text-align:center;padding:2rem;">No players bought yet.</div>';
+        return;
+      }
 
-        const p11Ids    = new Set(myP11.map(p => p.id));
-        const fgnCount  = myP11.filter(p => p.isForeign).length;
-        const totalSel  = myP11.length;
+      const p11Ids = new Set(myP11.map(p => p.id));
+      const fgnCount = myP11.filter(p => p.isForeign).length;
+      const totalSel = myP11.length;
 
-        // Sort: selected first, then by role
-        const roleOrder = { 'Wicketkeeper': 0, 'Batsman': 1, 'All-Rounder': 2, 'Bowler': 3 };
-        const sorted = [...squad].sort((a, b) => {
-            const aIn = p11Ids.has(a.id) ? 0 : 1;
-            const bIn = p11Ids.has(b.id) ? 0 : 1;
-            if (aIn !== bIn) return aIn - bIn;
-            return (roleOrder[a.role] ?? 4) - (roleOrder[b.role] ?? 4);
-        });
+      // Sort: selected first, then by role
+      const roleOrder = { 'Wicketkeeper': 0, 'Batsman': 1, 'All-Rounder': 2, 'Bowler': 3 };
+      const sorted = [...squad].sort((a, b) => {
+        const aIn = p11Ids.has(a.id) ? 0 : 1;
+        const bIn = p11Ids.has(b.id) ? 0 : 1;
+        if (aIn !== bIn) return aIn - bIn;
+        return (roleOrder[a.role] ?? 4) - (roleOrder[b.role] ?? 4);
+      });
 
-        list.innerHTML = sorted.map(p => {
-            const isIn    = p11Ids.has(p.id);
-            const blocked = !isIn && (totalSel >= 11 || (p.isForeign && fgnCount >= 4));
-            return `
+      list.innerHTML = sorted.map(p => {
+        const isIn = p11Ids.has(p.id);
+        const blocked = !isIn && (totalSel >= 11 || (p.isForeign && fgnCount >= 4));
+        return `
             <div class="p11-player-row ${isIn ? 'in-squad' : ''} ${blocked ? 'disabled' : ''}" onclick="toggleP11Player(${p.id})">
-                <div class="p11-player-badge">${isIn ? '✓' : (p.isForeign ? '✈' : '')}</div>
+                <div class="p11-player-badge">${isIn ? 'IN' : (p.isForeign ? 'OS' : '')}</div>
                 <div style="flex:1; margin: 0 0.8rem;">
-                    <div class="p11-player-name">${p.name} ${p.isForeign ? '<span style="font-size:0.6rem;color:var(--muted);">INT&#39;L</span>' : ''}</div>
-                    <div class="p11-player-meta">₹${(p.price/10000000).toFixed(1)}Cr &nbsp;•&nbsp; ★${p.rating}</div>
+                    <div class="p11-player-name">${p.name} ${p.isForeign ? '<span class="tag-overseas">OVERSEAS</span>' : ''}</div>
+                    <div class="p11-player-meta">₹${(p.price / 10000000).toFixed(1)}Cr &nbsp;&bull;&nbsp; Rating ${p.rating}</div>
                 </div>
                 ${getRoleTag(p.role)}
             </div>`;
-        }).join('');
+      }).join('');
     }
 
     function renderP11Panel() {
-        const fgnCount = myP11.filter(p => p.isForeign).length;
-        document.getElementById('p11-count').textContent     = myP11.length;
-        document.getElementById('p11-fgn-count').textContent = fgnCount;
+      const fgnCount = myP11.filter(p => p.isForeign).length;
+      document.getElementById('p11-count').textContent = myP11.length;
+      document.getElementById('p11-fgn-count').textContent = fgnCount;
 
-        // Colour warn when limits close or hit
-        document.getElementById('p11-count').style.color     = myP11.length >= 11 ? 'var(--gold)' : '';
-        document.getElementById('p11-fgn-count').style.color = fgnCount >= 4   ? 'var(--red)'  : 'var(--cyan)';
+      // Colour warn when limits close or hit
+      document.getElementById('p11-count').style.color = myP11.length >= 11 ? 'var(--gold)' : '';
+      document.getElementById('p11-fgn-count').style.color = fgnCount >= 4 ? 'var(--red)' : 'var(--cyan)';
 
-        const slotsEl = document.getElementById('p11-slots');
-        slotsEl.innerHTML = Array.from({length: 11}, (_, i) => {
-            const p = myP11[i];
-            return `
+      const slotsEl = document.getElementById('p11-slots');
+      slotsEl.innerHTML = Array.from({ length: 11 }, (_, i) => {
+        const p = myP11[i];
+        return `
             <div class="p11-slot ${p ? 'filled' : ''}">
                 <div class="p11-slot-num">${i + 1}</div>
-                <span style="flex:1; font-size:0.78rem;">${p ? p.name : '<span style="color:var(--muted)">— empty —</span>'}</span>
+                <span style="flex:1; font-size:0.78rem;">${p ? p.name : '<span style="color:var(--muted)">[ Empty Slot ]</span>'}</span>
                 ${p ? getRoleTag(p.role) : ''}
-                ${p && p.isForeign ? '<span style="font-size:0.5rem; color:var(--muted);">✈</span>' : ''}
+                ${p && p.isForeign ? '<span class="tag-overseas">OS</span>' : ''}
             </div>`;
-        }).join('');
+      }).join('');
     }
 
     window.toggleP11Player = (playerId) => {
-        const myData = roomState.participants[myId];
-        const squad  = myData.squad || [];
-        const player = squad.find(p => p.id === playerId);
-        if (!player) return;
+      const myData = roomState.participants[myId];
+      const squad = myData.squad || [];
+      const player = squad.find(p => p.id === playerId);
+      if (!player) return;
 
-        const idx = myP11.findIndex(p => p.id === playerId);
-        if (idx !== -1) {
-            // Remove
-            myP11.splice(idx, 1);
-        } else {
-            // Add — check limits
-            if (myP11.length >= 11) return showToast('Already 11 players selected!', 'gold');
-            if (player.isForeign && myP11.filter(p => p.isForeign).length >= 4)
-                return showToast('Max 4 foreign players allowed!', 'red');
-            myP11.push(player);
-        }
-        renderP11Pool();
-        renderP11Panel();
+      const idx = myP11.findIndex(p => p.id === playerId);
+      if (idx !== -1) {
+        // Remove
+        myP11.splice(idx, 1);
+      } else {
+        // Add - check limits
+        if (myP11.length >= 11) return showToast('Already 11 players selected!', 'gold');
+        if (player.isForeign && myP11.filter(p => p.isForeign).length >= 4)
+          return showToast('Max 4 foreign players allowed!', 'red');
+        myP11.push(player);
+      }
+      renderP11Pool();
+      renderP11Panel();
     };
 
     window.saveP11 = async () => {
-        if (myP11.length < 11) return showToast(`Select ${11 - myP11.length} more player(s) to complete your Playing 11!`, 'gold');
+      if (myP11.length < 11) return showToast(`Select ${11 - myP11.length} more player(s) to complete your Playing 11!`, 'gold');
 
-        const myData = roomState.participants[myId];
-        const avg    = (myP11.reduce((sum, p) => sum + p.rating, 0) / 11);
-        const strength = (avg / 5) * 10;
-        const efficiency = (myData.purse / PURSE_LIMIT) * 10;
-        const finalRating = (strength * 0.8) + (efficiency * 0.2);
+      const myData = roomState.participants[myId];
+      const avg = (myP11.reduce((sum, p) => sum + p.rating, 0) / 11);
+      const strength = (avg / 5) * 10;
+      const efficiency = (myData.purse / PURSE_LIMIT) * 10;
+      const finalRating = (strength * 0.8) + (efficiency * 0.2);
 
-        showStepLoader('SAVING YOUR PLAYING 11...');
-        const p11Ids  = new Set(myP11.map(p => p.id));
-        const newSquad = (myData.squad || []).map(p => ({ ...p, isPlaying11: p11Ids.has(p.id) }));
-        await update(ref(db, `rooms/${myRoomId}/participants/${myId}`), { 
-            squad: newSquad, 
-            teamRating: finalRating.toFixed(1) 
-        });
-        hideStepLoader();
-        showToast(`Playing 11 locked in! Rating: ⭐ ${finalRating.toFixed(1)} 🔒`, 'gold');
-        switchP11Tab('allteams');
+      showStepLoader('SAVING YOUR PLAYING 11...');
+      const p11Ids = new Set(myP11.map(p => p.id));
+      const newSquad = (myData.squad || []).map(p => ({ ...p, isPlaying11: p11Ids.has(p.id) }));
+      await update(ref(db, `rooms/${myRoomId}/participants/${myId}`), {
+        squad: newSquad,
+        teamRating: finalRating.toFixed(1)
+      });
+      hideStepLoader();
+      showToast(`Playing 11 locked in. Team Rating: ${finalRating.toFixed(1)} / 10`, 'gold');
+      switchP11Tab('allteams');
     };
 
     window.switchP11Tab = (tab) => {
-        document.getElementById('p11-mysquad-view').style.display = tab === 'mysquad' ? 'block' : 'none';
-        document.getElementById('p11-allteams-view').style.display = tab === 'allteams' ? 'block' : 'none';
-        document.getElementById('tab-mysquad').classList.toggle('active', tab === 'mysquad');
-        document.getElementById('tab-allteams').classList.toggle('active', tab === 'allteams');
-        if (tab === 'allteams') renderAllTeams();
+      document.getElementById('p11-mysquad-view').style.display = tab === 'mysquad' ? 'block' : 'none';
+      document.getElementById('p11-allteams-view').style.display = tab === 'allteams' ? 'block' : 'none';
+      document.getElementById('tab-mysquad').classList.toggle('active', tab === 'mysquad');
+      document.getElementById('tab-allteams').classList.toggle('active', tab === 'allteams');
+      if (tab === 'allteams') renderAllTeams();
     };
 
     function renderAllTeams() {
-        const cont = document.getElementById('p11-all-teams-list');
-        if (!cont || !roomState) return;
+      const cont = document.getElementById('p11-all-teams-list');
+      if (!cont || !roomState) return;
 
-        cont.innerHTML = Object.values(roomState.participants)
-            .sort((a, b) => (parseFloat(b.teamRating) || 0) - (parseFloat(a.teamRating) || 0))
-            .map(team => {
-                const squad  = team.squad || [];
-                const p11    = squad.filter(p => p.isPlaying11);
-                const fgn    = p11.filter(p => p.isForeign).length;
-                const locked = p11.length >= 11;
-                const rating = team.teamRating || '0.0';
+      cont.innerHTML = Object.values(roomState.participants)
+        .sort((a, b) => (parseFloat(b.teamRating) || 0) - (parseFloat(a.teamRating) || 0))
+        .map(team => {
+          const squad = team.squad || [];
+          const p11 = squad.filter(p => p.isPlaying11);
+          const fgn = p11.filter(p => p.isForeign).length;
+          const locked = p11.length >= 11;
+          const rating = team.teamRating || '0.0';
 
-                return `
+          return `
                 <div class="p11-team-card">
                     <div class="p11-team-header">
-                        <span class="p11-team-emoji">${TEAM_EMOJI[team.team] || '🏏'}</span>
-                        <div>
+                        <div>${getTeamBadge(team.team)}</div>
+                        <div style="margin-left: 0.5rem;">
                             <div class="p11-team-name">${team.team}</div>
-                            <div class="p11-team-owner" style="font-size:0.6rem;">${team.name} &nbsp;•&nbsp; ₹${(team.purse/10000000).toFixed(1)}Cr left</div>
-                            <div style="font-family:var(--font-head); font-size:1rem; color:var(--gold); margin-top:2px;">RATING: ⭐ ${rating}</div>
+                            <div class="p11-team-owner" style="font-size:0.6rem;">${team.name} &nbsp;&bull;&nbsp; ₹${(team.purse / 10000000).toFixed(1)}Cr left</div>
+                            <div style="font-family:var(--font-head); font-size:0.95rem; color:var(--gold); margin-top:2px;">TEAM RATING: ${rating} / 10</div>
                         </div>
                         <div style="margin-left:auto; text-align:right;">
-                            <div style="font-family:var(--font-head);font-size:1.4rem;color:${locked?'var(--gold)':'var(--muted)'}">${p11.length}/11</div>
-                            <div style="font-size:0.6rem;color:var(--muted);">FOREIGN: ${fgn}/4</div>
+                            <div style="font-family:var(--font-head);font-size:1.4rem;color:${locked ? 'var(--gold)' : 'var(--muted)'}">${p11.length}/11</div>
+                            <div style="font-size:0.6rem;color:var(--muted);">OVERSEAS: ${fgn}/4</div>
                         </div>
                     </div>
                     ${locked ? p11.map((p, i) => `
                         <div class="p11-final-player">
-                            <span style="color:var(--muted);font-size:0.65rem;width:18px;">${i+1}.</span>
-                            <span style="flex:1;">${p.name} ${p.isForeign ? '✈️' : ''}</span>
+                            <span style="color:var(--muted);font-size:0.65rem;width:18px;">${i + 1}.</span>
+                            <span style="flex:1;">${p.name} ${p.isForeign ? '<span class="tag-overseas">OS</span>' : ''}</span>
                             ${getRoleTag(p.role)}
                         </div>
-                    `).join('') : `<div class="muted" style="font-size:0.75rem;text-align:center;padding:1rem;">⏳ Selecting 11...</div>`}
+                    `).join('') : `<div class="muted" style="font-size:0.75rem;text-align:center;padding:1rem;">Selecting playing 11...</div>`}
                 </div>`;
-            }).join('');
+        }).join('');
     }
 
   </script>
 </body>
+
 </html>
